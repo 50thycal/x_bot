@@ -1,21 +1,34 @@
 # Targets
 
 ## Niche search queries (Scout runs these on X)
-- TODO e.g. "board game" playtest
-- TODO e.g. "indie game" devlog
-- TODO e.g. (cozy OR roguelike) "mobile game"
-- TODO e.g. kickstarter "board game" -giveaway
+- "Claude Code" "build in public"
+- Codex "vibe coding" shipped
+- "indie hacker" "side project"
+- "AI agents" automation "open source"
+- "game development" "AI playtesting"
 
-## Customer-intent phrases (highest value — someone is asking for what I make)
-- "looking for a board game"
-- "recommend a mobile game"
-- "2 player board game" recommendation
-- "games like" TODO <comparable title>
-- TODO
+## Customer-intent and builder-intent phrases (highest value)
+- "looking for playtesters"
+- "anyone building with Claude Code"
+- "coding on my phone" OR "coding from my iPhone"
+- "how do you automate" X OR twitter posting
+- "recommend a mobile game" (only once Straight Watch has a link)
 
-## Accounts / lists to watch (peers, publishers, reviewers, communities)
-- TODO @handle — why
-- TODO X list URL
+## Who to discover (mix for follow and reply suggestions)
+- 60% smaller active builders, about 100 to 10,000 followers, posting their own projects and technical problems.
+- 20% established independent developers.
+- 20% niche experimenters: unusual software, games, AI agents, automation systems.
+- Want: people actively building and sharing, with real conversations in their replies.
+
+## Accounts / lists to watch
+- @levelsio: my main reference. Independent software, odd experiments, real products, transparent numbers.
+- @dhh: independent development and software engineering takes.
+- Keep any other accounts already collected in earlier Engagement queue issues. Don't treat this list as complete.
 
 ## Never engage
 - Giveaway/engagement-farm accounts, politics, drama threads, crypto shills.
+- AI news aggregators, motivational content, generic startup advice, accounts selling AI courses.
+
+## Engagement rules
+- Suggest follows and replies only. Never post replies or follow automatically.
+- Draft replies only from projects I've actually worked on. Never fabricate experience.
