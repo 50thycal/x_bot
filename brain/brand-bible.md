@@ -1,11 +1,11 @@
 # Brand bible
 
-> Grok reads this before every task. Fill every `TODO`. Short and concrete beats long and vague.
+> Grok reads this before every task. Short and concrete beats long and vague.
 
 ## Who I am
 - Handle: @50th_ETH
-- One-line bio: TODO (what you make + for whom)
-- Why should anyone follow me: TODO (e.g. "I post the real numbers and art from building a board game and a mobile game solo")
+- Bio (keep as is, it's on my profile): "Civil engineer trying to build software. Claude Code + Codex. 70% iPhone / 30% Mac. Building games, AI tools & trading experiments."
+- Why should anyone follow me: a civil engineer building real software with Claude Code and Codex, mostly from an iPhone, and posting what actually happens: the experiments, the things that broke, and the results. Including this bot.
 
 ## Stage
 PRE-LAUNCH. Games are in development; grow the audience now by building in public
@@ -15,17 +15,23 @@ Until then drafts use `product: none` and the `launch` pillar is off.
 ## What I sell / will sell
 | Product | File | Stage | The one call-to-action |
 |---|---|---|---|
-| Mobile game | products/mobile-game.md | TODO concept/prototype/beta/live | TODO join beta / wishlist / download |
-| Board game | products/board-game.md | TODO | TODO Kickstarter notify-me / newsletter |
+| Straight Watch (game, my only active game) | products/ (type not set yet) | in development | none yet (no link). Later: playtest sign-up |
+| Mobile game | products/mobile-game.md | not started | none |
+| Board game | products/board-game.md | not started | none |
 
-## Who I want to reach (ideal follower = potential customer)
-- Primary: TODO (e.g. cozy/strategy mobile gamers, tabletop gamers who back Kickstarters)
-- Secondary: TODO (e.g. indie devs and designers — peers who amplify)
-- NOT trying to reach: TODO
+Don't describe Straight Watch's gameplay, art or features until a products file has facts about it. Never invent them.
+
+## Who I want to reach (ideal follower)
+- Primary: people who would play, playtest and eventually buy my games.
+- Secondary: other builders. Smaller active builders (about 100 to 10,000 followers), independent developers, and people building unusual software, games, AI agents or automation. People I could have a real technical conversation with, and who could lead to collaboration or work.
+- Goal: relationships, a GitHub following and opportunities. Not raw impressions.
+- NOT trying to reach: politics of any kind, AI news aggregators, engagement farmers, motivational content, generic startup advice, people selling AI courses.
 
 ## Proof I can show
-- TODO (playtest counts, screenshots, sales, wishlists, awards, years of experience)
+- This bot: Grok drafts, I merge a PR, GitHub Actions posts. Real repo, real ledger.
+- Coding mostly from an iPhone with Claude Code and Codex. GitHub contribution history.
+- Videos of the games and builds are coming. Until they exist, don't claim them.
 
 ## Link policy
-- The only link lives in bio / pinned post: TODO URL
+- No link in bio yet. Don't reference one.
 - Auto-posted originals never contain URLs.
