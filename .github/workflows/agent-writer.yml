@@ -1,0 +1,31 @@
+name: agent-writer
+# Fallback B: Daily Writer through the xAI API. Opens a "Drafts for DATE" PR (merge = approve).
+# 02:03 UTC = 8:03 pm US Central (CST) the evening before the drafts' date.
+on:
+  schedule:
+    - cron: "3 2 * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: write        # push the drafts/DATE branch (never main)
+  pull-requests: write   # open the PR
+  issues: read           # read today's Engagement queue trends
+  actions: write         # dispatch validate.yml on the new branch
+concurrency:
+  group: agent-writer
+  cancel-in-progress: false
+jobs:
+  writer:
+    if: vars.AGENTS_ENABLED != 'false'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run Daily Writer
+        env:
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          XAI_MODEL: ${{ vars.XAI_MODEL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -m agents.run writer

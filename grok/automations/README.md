@@ -1,3 +1,7 @@
+> **Status:** the Grok automations can search X but their GitHub connector needs a manual click to
+> create issues/PRs, so this repo runs the same jobs via **Fallback B** (GitHub Actions + xAI API).
+> See `docs/SETUP.md` → 3b. The prompts Actions uses live in `agents/prompts/`.
+
 # Grok automations
 
 Create each of these at **grok.com/automations** (or Grok app → Automations).
