@@ -1,0 +1,39 @@
+name: metrics
+# Refreshes impressions/likes/replies/etc. for our own recent posts (~$0.001 per post read).
+on:
+  schedule:
+    - cron: "23 */3 * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: ledger-writer
+  cancel-in-progress: false
+jobs:
+  metrics:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Refresh metrics
+        env:
+          X_API_KEY: ${{ secrets.X_API_KEY }}
+          X_API_SECRET: ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+        run: python -m publisher.metrics
+      - name: Commit ledger
+        run: |
+          git config user.name "x-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ledger
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "ledger: metrics refresh ${{ github.run_id }}"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep $((i * 5))
+          done
+          exit 1
