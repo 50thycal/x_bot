@@ -25,5 +25,6 @@ jobs:
         env:
           XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
           XAI_MODEL: ${{ vars.XAI_MODEL }}
+          XAI_MAX_TURNS: ${{ vars.XAI_MAX_TURNS }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python -m agents.run scout
