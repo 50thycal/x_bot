@@ -16,4 +16,5 @@ Replace `OWNER/x_bot` with this repo's full name in each prompt (`50thycal/x_bot
 2. Run Daily Scout manually once. Confirm an issue appears in this repo.
    - If Grok can search X but cannot create the issue from an automation, see `docs/PLAN.md` → Fallback B.
 3. Run Daily Writer manually. Confirm a PR appears and touches only `queue/`.
-4. Turn on branch protection for `main` (require PR) before Phase 1 publisher goes live.
+4. Do NOT add a "require pull request" branch protection on `main`: the publisher commits the ledger there.
+   Approval is enforced by the publisher instead: it only posts a draft whose last commit is part of a merged PR.

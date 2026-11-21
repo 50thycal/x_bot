@@ -1,0 +1,11 @@
+{
+  "max_posts_per_day": 3,
+  "min_gap_minutes": 90,
+  "max_posts_per_run": 1,
+  "max_lateness_minutes": 180,
+  "max_thread_parts": 5,
+  "pillars": ["build", "devlog", "design", "numbers", "community", "launch"],
+  "products": ["none", "board-game", "mobile-game"],
+  "metrics_checkpoints_hours": [1, 6, 24, 72, 168],
+  "metrics_max_age_days": 28
+}

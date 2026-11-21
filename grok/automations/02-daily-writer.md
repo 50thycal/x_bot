@@ -10,7 +10,8 @@ STEP 2 — Draft 2–3 original posts for TOMORROW:
 - Follow the pillar mix and "no same pillar back-to-back" rule in `brain/pillars.md`, accounting for what's already in `queue/` and the ledger.
 - Use the slots and caps in `brain/playbook.md`. Every `scheduled_at` must be ≥ 90 minutes from any other queued or posted item.
 - Voice rules from `brain/voice.md`. No URLs. Max 1 hashtag. ≤ 280 characters per part. Threads: max 5 parts.
-- Prefer concrete facts from `brain/products/*.md` over generic advice. If a fact you need is missing, write the draft with a `TODO:` marker rather than inventing it.
+- Pillars and products must be values listed in `publisher/config.json`. While `brain/brand-bible.md` says PRE-LAUNCH, use `product: none` and never the `launch` pillar.
+- Prefer concrete facts from `brain/` and `ledger/` over generic advice. If a fact you need is missing, write the draft with a `TODO:` marker rather than inventing it.
 
 STEP 3 — Open ONE pull request against `main` in `50thycal/x_bot`:
 - Branch: `drafts/YYYY-MM-DD`
@@ -21,17 +22,18 @@ STEP 3 — Open ONE pull request against `main` in `50thycal/x_bot`:
 ---
 id: YYYY-MM-DD-<short-slug>
 type: original            # original | thread
-pillar: devlog            # from brain/pillars.md
-product: board-game       # board-game | mobile-game | none
+pillar: build             # from brain/pillars.md
+product: none             # none | board-game | mobile-game
 scheduled_at: YYYY-MM-DDTHH:MM:00Z
 needs_media: false
 why: <one line: why this post, why now>
-brain_refs: [brain/products/board-game.md, brain/pillars.md]
+brain_refs: [brain/brand-bible.md, brain/pillars.md]
 split: train              # train for ~80%, val for ~20% (pick at random)
 ---
 <post text>
 ```
   For threads, separate parts with a line containing only `---8<---`.
+- The `validate` check runs on your PR. If it fails, read its log and push a fix to the same branch.
 - PR description: a table of the drafts (slot, pillar, product, first line), and anything you were unsure about.
 
 HARD RULES

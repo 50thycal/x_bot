@@ -3,9 +3,14 @@
 > Grok reads this before every task. Fill every `TODO`. Short and concrete beats long and vague.
 
 ## Who I am
-- Handle: TODO (@...)
+- Handle: @50th_ETH
 - One-line bio: TODO (what you make + for whom)
 - Why should anyone follow me: TODO (e.g. "I post the real numbers and art from building a board game and a mobile game solo")
+
+## Stage
+PRE-LAUNCH. Games are in development; grow the audience now by building in public
+(the `build` pillar), so there is an audience waiting when a product link exists.
+Until then drafts use `product: none` and the `launch` pillar is off.
 
 ## What I sell / will sell
 | Product | File | Stage | The one call-to-action |

@@ -74,20 +74,21 @@ Three actors, each doing only what it is allowed and good at:
 - [x] Research and plan (`docs/`)
 - [x] `brain/` templates
 - [x] Grok automation prompts in `grok/automations/`
+- [x] Handle set (@50th_ETH), pre-launch pillar mix set
 - [ ] **You:** fill `brain/brand-bible.md`, `voice.md`, `products/*.md`, `targets.md`
 - [ ] **You:** create the three automations at grok.com/automations from the prompt files
 - [ ] **Validation test:** run Daily Scout once manually and confirm Grok can (a) search X, (b) open an issue in this repo from inside an automation. If (b) fails → use Fallback B below.
 
-### Phase 1 — Publisher (small Python + GitHub Actions)
-- `publisher/publish.py`: parse `queue/*.md` front-matter, post due items via X API v2 (OAuth 1.0a user context), threads supported, append to `ledger/posts.jsonl`, move file to `queue/posted/`.
-- `.github/workflows/publish.yml` cron `*/30 * * * *` + `workflow_dispatch`, `concurrency` group so two runs never double-post.
-- `validate.yml` on PRs: ≤280 chars per part, no URLs, valid slot, ≥60 min spacing, daily cap.
-- Secrets: `X_API_KEY`, `X_API_SECRET`, `X_ACCESS_TOKEN`, `X_ACCESS_TOKEN_SECRET`.
-- Branch protection on `main`: PR required (this is what makes "merged = approved" safe).
-- Dry-run mode (`DRY_RUN=1`) on by default until you flip it.
+### Phase 1 — Publisher ✅ built
+- `publisher/publish.py`: parses `queue/*.md`, posts due drafts via X API v2 (OAuth 1.0a, stdlib only), threads as self-replies, appends to `ledger/posts.jsonl` immediately after each post (no double posts on crash), archives to `queue/posted/`.
+- Approval: a draft is only posted if its last commit belongs to a PR merged into `main` (checked via the GitHub API). Direct pushes to `main` are blocked.
+- Caps: ≤3/day, ≥90 min apart, 1 per run, skip if > 3 h late (no catch-up bursts). Tunable in `publisher/config.json`.
+- `publish.yml` runs at :07 and :37 each hour + manual, `concurrency: ledger-writer` so runs never overlap.
+- `validate.yml` on every PR: unit tests + draft rules (≤280 weighted chars, no URLs, no TODOs, valid pillar/product, spacing, daily cap).
+- **Dry run unless repo variable `PUBLISH_ENABLED=true`.** Setup steps: [SETUP.md](SETUP.md).
 
-### Phase 2 — Metrics + ledger
-- `publisher/metrics.py` pulls `public_metrics` / `non_public_metrics` for your own posts (cheapest read tier) at +1h/+6h/+24h/+7d.
+### Phase 2 — Metrics + ledger ✅ built
+- `publisher/metrics.py` (`metrics.yml`, every 3 h) refreshes impressions, likes, replies, reposts, quotes, bookmarks, profile clicks at +1h/+6h/+24h/+72h/+7d checkpoints. Makes zero API calls when nothing is due.
 - Weekly Review gets real numbers to learn from.
 
 ### Phase 3 — Gated learning (grokbot-x's SkillOpt, simplified)
@@ -107,13 +108,26 @@ files, just a different trigger. Cost: a few cents/day of xAI API usage.
 
 ## 7. Cost estimate
 
+Per action (X API pay-per-use, Nov 2026 rate card):
+
+| Action | Who does it | Cost each |
+|---|---|---|
+| Post (no link) | publisher | **$0.015** |
+| Each extra thread part | publisher | $0.015 |
+| Post containing a URL | blocked by validator | $0.20 |
+| Read metrics of your own post | metrics job | ~$0.001 |
+| Like / follow / repost via API | **not used** (X bans automating them) | would be $0.015 |
+| Likes, follows, replies you tap yourself | you, in the X app | **$0** |
+| Grok searching X / drafting | Grok app | **$0** (in your Grok plan) |
+| GitHub Actions | public repo | **$0** |
+
+Monthly at the default caps:
+
 | Item | Volume | Cost/month |
 |---|---|---|
-| Original posts (no URL) | ~3/day | ~90 × $0.015 ≈ **$1.35** |
-| Own-post metric reads | ~90 posts × 4 reads | ≈ **$0.40** |
-| Grok Automations | 3 automations | included in your Grok plan |
-| GitHub Actions | ~1,500 min | free tier |
-| **Total** | | **≈ $2/month** + X API credit top-up minimum |
+| Original posts | ≤3/day ≈ 90 | ≈ **$1.35** (max $1.35 + thread parts) |
+| Metric reads | ~90 posts × 5 checkpoints | ≈ **$0.45** |
+| **Total** | | **≈ $1.80/month → $5 lasts ~2.5 months** |
 
 ## 8. Guardrails (non-negotiable)
 
