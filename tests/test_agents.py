@@ -17,6 +17,24 @@ class ParseTest(unittest.TestCase):
         ]}
         self.assertEqual(xai.parse_response(data), ("hello", ["https://x.com/a/status/1"]))
 
+    def test_read_sse_completed(self):
+        resp = {"type": "response.completed", "response": {"model": "m", "output": [
+            {"type": "message", "content": [{"type": "output_text", "text": "hi"}]}], "usage": {"input_tokens": 3}}}
+        lines = [b"event: response.output_text.delta\n", b'data: {"type":"response.output_text.delta","delta":"h"}\n', b"\n",
+                 b"event: response.completed\n", ("data: " + __import__("json").dumps(resp) + "\n").encode(), b"\n"]
+        data = xai.read_sse(lines)
+        self.assertEqual(xai.parse_response(data)[0], "hi")
+        self.assertEqual(data["usage"]["input_tokens"], 3)
+
+    def test_read_sse_deltas_and_errors(self):
+        data = xai.read_sse([b'data: {"type":"response.output_text.delta","delta":"a"}\n', b"\n",
+                             b'data: {"type":"response.output_text.delta","delta":"b"}\n'])
+        self.assertEqual(xai.parse_response(data)[0], "ab")
+        with self.assertRaises(xai.XAIError):
+            xai.read_sse([b'data: {"type":"response.failed","response":{"error":{"message":"no credits"}}}\n', b"\n"])
+        with self.assertRaises(xai.XAIError):
+            xai.read_sse([b": keepalive\n", b"\n"])
+
     def test_cost(self):
         r = xai.Result(text="", model="m", usage={"cost_in_usd_ticks": 2_500_000_000})
         self.assertAlmostEqual(r.cost_usd, 0.25)

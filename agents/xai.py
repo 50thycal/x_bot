@@ -5,6 +5,7 @@ Docs: https://docs.x.ai/docs/guides/tools/search-tools
 """
 from __future__ import annotations
 
+import http.client
 import json
 import os
 import time
@@ -99,16 +100,18 @@ def respond(user_input: str, *, instructions: str, model: str | None = None,
     if max_turns:
         body["max_turns"] = max_turns
 
+    body["stream"] = True  # long agentic calls go quiet for minutes; streaming keeps the connection alive
     attempt = 0
     while True:
         attempt += 1
         req = urllib.request.Request(
             XAI_URL, data=json.dumps(body).encode(), method="POST",
             headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json",
-                     "User-Agent": "x-bot-agents"})
+                     "Accept": "text/event-stream", "User-Agent": "x-bot-agents"})
         try:
             with urllib.request.urlopen(req, timeout=timeout) as resp:
-                data = json.loads(resp.read().decode())
+                ctype = resp.headers.get("Content-Type", "")
+                data = read_sse(resp) if "event-stream" in ctype else json.loads(resp.read().decode())
             break
         except urllib.error.HTTPError as e:
             err = XAIError(e.code, e.read().decode(errors="replace"))
@@ -120,11 +123,53 @@ def respond(user_input: str, *, instructions: str, model: str | None = None,
                 time.sleep(15 * attempt)
                 continue
             raise err from None
-        except (urllib.error.URLError, TimeoutError) as e:
+        except (urllib.error.URLError, TimeoutError, http.client.HTTPException, ConnectionError) as e:
             if attempt < retries:
                 time.sleep(15 * attempt)
                 continue
-            raise XAIError(0, f"network error: {e}") from None
+            raise XAIError(0, f"network error: {type(e).__name__}: {e}") from None
 
     text, urls = parse_response(data)
     return Result(text=text, model=data.get("model", model), usage=data.get("usage") or {}, sources=urls)
+
+
+def read_sse(lines) -> dict:
+    """Read a Responses API event stream and return the final response object.
+
+    Uses the `response.completed` event; if the stream ends without one, rebuilds
+    a minimal response from the output_text deltas.
+    """
+    final: dict | None = None
+    deltas: list[str] = []
+    buf: list[str] = []
+
+    def handle(payload: str) -> None:
+        nonlocal final
+        if not payload or payload == "[DONE]":
+            return
+        ev = json.loads(payload)
+        typ = ev.get("type", "")
+        if typ in ("response.completed", "response.done"):
+            final = ev.get("response") or ev
+        elif typ in ("response.failed", "response.incomplete", "error"):
+            r = ev.get("response") or {}
+            msg = r.get("error") or r.get("incomplete_details") or ev.get("error") or ev
+            raise XAIError(0, f"{typ}: {json.dumps(msg)[:800]}")
+        elif typ == "response.output_text.delta":
+            deltas.append(ev.get("delta", ""))
+
+    for raw in lines:
+        line = raw.decode("utf-8", errors="replace").rstrip("\r\n") if isinstance(raw, bytes) else raw.rstrip("\r\n")
+        if line.startswith("data:"):
+            buf.append(line[5:].lstrip())
+        elif line == "":
+            if buf:
+                handle("\n".join(buf))
+                buf = []
+    if buf:
+        handle("\n".join(buf))
+    if final is not None:
+        return final
+    if deltas:
+        return {"output": [{"type": "message", "content": [{"type": "output_text", "text": "".join(deltas)}]}]}
+    raise XAIError(0, "stream ended without a completed response")
