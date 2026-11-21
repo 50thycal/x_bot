@@ -274,6 +274,12 @@ class XError(RuntimeError):
 
 
 def x_request(method: str, path: str, creds: XCreds, query: dict | None = None, body: dict | None = None) -> dict:
+    return x_request_full(method, path, creds, query, body)[0]
+
+
+def x_request_full(method: str, path: str, creds: XCreds, query: dict | None = None,
+                   body: dict | None = None) -> tuple[dict, dict]:
+    """Like x_request but also returns response headers (lower-cased keys)."""
     url = f"{X_API}{path}"
     query = query or {}
     full = url + ("?" + urllib.parse.urlencode(query, quote_via=urllib.parse.quote) if query else "")
@@ -285,7 +291,8 @@ def x_request(method: str, path: str, creds: XCreds, query: dict | None = None, 
     req = urllib.request.Request(full, data=data, method=method, headers=headers)
     try:
         with urllib.request.urlopen(req, timeout=30) as resp:
-            return json.loads(resp.read().decode() or "{}")
+            headers = {k.lower(): v for k, v in resp.headers.items()}
+            return json.loads(resp.read().decode() or "{}"), headers
     except urllib.error.HTTPError as e:
         raise XError(e.code, e.read().decode(errors="replace")) from None
 
