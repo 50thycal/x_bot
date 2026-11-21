@@ -49,7 +49,8 @@ Setup:
 1. console.x.ai → API Keys → create a key → repo secret **`XAI_API_KEY`** (paste it yourself, never in chat/files).
 2. Repo → Settings → Actions → General → Workflow permissions → tick
    **Allow GitHub Actions to create and approve pull requests** (needed for the writer/review PRs).
-3. Optional repo variables: `XAI_MODEL` (default `grok-4.7`), `AGENTS_ENABLED=false` to pause all three.
+3. Optional repo variables: `XAI_MODEL` (default `grok-4.7`), `XAI_MAX_TURNS` (default 8; fewer turns = fewer X searches = cheaper Scout/Review), `AGENTS_ENABLED=false` to pause all three.
+   First real Scout run: grok-4.7, 8 turns, 48 searches, 122 posts → **$2.35**. Tune these two to bring it down.
 4. Actions → **agent-scout** → Run workflow. The summary shows the issue link and the run's cost.
 
 Notes:

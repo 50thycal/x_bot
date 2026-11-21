@@ -31,6 +31,13 @@ FIRST_SLOT_UTC = dt.time(14, 0)
 
 # --------------------------------------------------------------------------- helpers
 
+def int_env(name: str, default: int) -> int:
+    try:
+        return int(os.environ.get(name, "").strip() or default)
+    except ValueError:
+        return default
+
+
 def read(rel: str, tail_lines: int | None = None) -> str:
     p = ROOT / rel
     if not p.exists():
@@ -113,7 +120,7 @@ def scout(now: dt.datetime, dry_run: bool) -> int:
     ])
     res = xai.respond(user, instructions=(PROMPTS / "scout.md").read_text(),
                       tools=[xai.x_search_tool(from_date=(now - dt.timedelta(days=2)).date().isoformat())],
-                      max_turns=int(os.environ.get("XAI_MAX_TURNS", "8")))
+                      max_turns=int_env("XAI_MAX_TURNS", 8))
     body = strip_outer_fence(res.text)
     if not body:
         summary(["## Scout\nFAILED: empty answer from Grok", res.usage_line()])
@@ -288,7 +295,7 @@ def review(now: dt.datetime, dry_run: bool) -> int:
     ])
     res = xai.respond(user, instructions=(PROMPTS / "review.md").read_text(),
                       tools=[xai.x_search_tool(from_date=(now - dt.timedelta(days=28)).date().isoformat())],
-                      max_turns=int(os.environ.get("XAI_MAX_TURNS", "8")))
+                      max_turns=int_env("XAI_MAX_TURNS", 8))
     try:
         data = extract_json(res.text)
     except (ValueError, json.JSONDecodeError) as e:

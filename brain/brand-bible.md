@@ -15,11 +15,10 @@ Until then drafts use `product: none` and the `launch` pillar is off.
 ## What I sell / will sell
 | Product | File | Stage | The one call-to-action |
 |---|---|---|---|
-| Straight Watch (game, my only active game) | products/ (type not set yet) | in development | none yet (no link). Later: playtest sign-up |
-| Mobile game | products/mobile-game.md | not started | none |
+| Straitwatch (mobile convoy-defense roguelite, my only game) | products/mobile-game.md | playable prototype (V3), pre-TestFlight | none yet (no link). Later: TestFlight playtest sign-up |
 | Board game | products/board-game.md | not started | none |
 
-Don't describe Straight Watch's gameplay, art or features until a products file has facts about it. Never invent them.
+Only describe Straitwatch with facts from `products/mobile-game.md`. Never invent features, numbers or dates.
 
 ## Who I want to reach (ideal follower)
 - Primary: people who would play, playtest and eventually buy my games.
