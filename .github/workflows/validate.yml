@@ -1,9 +1,10 @@
 name: validate
 on:
   pull_request:
+  workflow_dispatch: {}   # agent-writer dispatches this on PRs it opens (GITHUB_TOKEN PRs don't trigger pull_request)
   push:
     branches: [main]
-    paths: ["publisher/**", "tests/**", "queue/**"]
+    paths: ["publisher/**", "agents/**", "tests/**", "queue/**"]
 permissions:
   contents: read
 jobs:

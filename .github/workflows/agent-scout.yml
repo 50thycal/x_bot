@@ -1,0 +1,29 @@
+name: agent-scout
+# Fallback B: Daily Scout through the xAI API (x_search). Creates the "Engagement queue — DATE" issue.
+# 14:03 UTC = 8:03 am US Central (CST). During daylight time it runs at 9:03 am; change to "3 13 * * *" then.
+on:
+  schedule:
+    - cron: "3 14 * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: agent-scout
+  cancel-in-progress: false
+jobs:
+  scout:
+    if: vars.AGENTS_ENABLED != 'false'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run Daily Scout
+        env:
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          XAI_MODEL: ${{ vars.XAI_MODEL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -m agents.run scout

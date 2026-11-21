@@ -32,6 +32,32 @@ Never paste these into an issue, PR, chat, or file. The repo is **public**.
 
 Follow [`grok/automations/README.md`](../grok/automations/README.md). Fill the `TODO`s in `brain/` first (handle and pre-launch stage are already set).
 
+## 3b. Fallback B: run the prompts in GitHub Actions (active)
+
+Grok's own automations can search X, but their GitHub connector stops at a manual
+confirmation form, so they can't create issues or PRs unattended. Fallback B runs the
+same three jobs in GitHub Actions against the xAI API. Grok only gets `x_search`; the
+workflow (not Grok) creates the issue / opens the PR, so Grok has no GitHub access.
+
+| Workflow | When (UTC) | Output |
+|---|---|---|
+| `agent-scout` | daily 14:03 (8:03 am CST) | issue "Engagement queue — DATE" |
+| `agent-writer` | daily 02:03 (8:03 pm CST) | PR "Drafts for DATE" (merge = approve) |
+| `agent-review` | Mon 00:13 (Sun 6:13 pm CST) | issue "Weekly review — DATE" (+ playbook PR if evidence) |
+
+Setup:
+1. console.x.ai → API Keys → create a key → repo secret **`XAI_API_KEY`** (paste it yourself, never in chat/files).
+2. Repo → Settings → Actions → General → Workflow permissions → tick
+   **Allow GitHub Actions to create and approve pull requests** (needed for the writer/review PRs).
+3. Optional repo variables: `XAI_MODEL` (default `grok-4.7`), `AGENTS_ENABLED=false` to pause all three.
+4. Actions → **agent-scout** → Run workflow. The summary shows the issue link and the run's cost.
+
+Notes:
+- PRs opened by `GITHUB_TOKEN` don't trigger `pull_request` workflows, so the writer validates drafts
+  itself (one repair round, invalid drafts are dropped) and then dispatches `validate` on the branch.
+- Pause the three Grok automations (grok.com → Settings → Automations) so they don't run in parallel.
+- Daylight saving: the crons are fixed UTC, so in summer they run one hour later local time.
+
 ## 4. Dry run → first live post
 
 1. **Actions → publish → Run workflow.** Open the run's Summary: it should say `DRY RUN` and either `nothing due` or `WOULD POST …`.

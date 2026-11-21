@@ -100,7 +100,9 @@ Three actors, each doing only what it is allowed and good at:
 - Swap publisher for Typefully/Postiz if you want a calendar UI.
 - Apply to X for AI-reply approval if you ever want reply automation (only then).
 
-## 6. Fallback B (if Grok automations can't write to GitHub)
+## 6. Fallback B (if Grok automations can't write to GitHub) ✅ built
+
+Built in `agents/` + `.github/workflows/agent-*.yml` after the Grok GitHub connector turned out to need a manual confirmation for every write. See SETUP.md → 3b.
 
 Run the same three prompts inside GitHub Actions against the xAI API with
 the `x_search` tool (exactly what twitter-agent does). Same repo layout, same
