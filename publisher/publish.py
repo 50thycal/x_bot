@@ -1,7 +1,9 @@
 """Post approved, due drafts from queue/ to X.
 
 Approved = the last commit touching the draft belongs to a PR merged into main.
-Due      = scheduled_at <= now and not older than max_lateness_minutes.
+Due      = scheduled_at <= now and not older than max_lateness_minutes (48 h by default:
+           a draft approved after its slot posts at the next free slot; the caps
+           below, not the lateness limit, are what prevent catch-up bursts).
 Caps     = max_posts_per_day (UTC day), min_gap_minutes since the last post,
            max_posts_per_run.
 

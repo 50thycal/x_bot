@@ -1,9 +1,12 @@
 name: agent-scout
 # Fallback B: Daily Scout through the xAI API (x_search). Creates the "Engagement queue — DATE" issue.
 # 14:03 UTC = 8:03 am US Central (CST). During daylight time it runs at 9:03 am; change to "3 13 * * *" then.
+# GitHub delays or drops scheduled runs under load (observed: 6+ h late). The 18:33 run is a backup:
+# it exits before calling xAI if today's issue already exists, so it costs nothing when the first run worked.
 on:
   schedule:
     - cron: "3 14 * * *"
+    - cron: "33 18 * * *"
   workflow_dispatch: {}
 permissions:
   contents: read

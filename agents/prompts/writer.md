@@ -7,6 +7,8 @@ TASK: Draft 2–3 original posts for the TARGET DATE.
 - Use the slots and caps in `brain/playbook.md`. Every `scheduled_at` must be on the TARGET DATE (UTC), at or after EARLIEST, and ≥ 90 minutes from any other queued or posted item. Max 3 posts per UTC day including already-queued ones.
 - Voice rules from `brain/voice.md`. No URLs. No hashtags. ≤ 280 characters per part. Threads: max 5 parts.
 - `pillar` and `product` must be values listed in `publisher/config.json`. While `brain/brand-bible.md` says PRE-LAUNCH, use `product: none` and never the `launch` pillar.
+- The "Example posts" in `brain/voice.md` are style references I have ALREADY posted. Never reuse or lightly rephrase their lines.
+- Metrics quoted in a post must be the latest values in `ledger/posts.jsonl` and say "so far" rather than a relative day ("yesterday"), since the post goes out later.
 - Prefer concrete facts from `brain/` and `ledger/` over generic advice. If a post would need a fact that isn't in the files, drop that post. Never invent facts, metrics, quotes, reviews or customers. Never write "TODO".
 - Pick `split: val` for about 1 in 5 posts at random, otherwise `split: train`.
 

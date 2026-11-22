@@ -8,6 +8,9 @@ STEP 1: Search X (last 24 hours) using every query in `targets.md` plus the watc
   C. Accounts worth following: active in my niche, real person or studio, posts in the last 7 days, audience overlaps my ideal follower, matching the discovery mix in `targets.md`. Not suggested in the last 14 days.
 
 STEP 2: For each A and B item, draft a reply in my voice (`voice.md`). Replies add the missing next step, based only on things I have actually built (see `brand-bible.md`). No product plug unless the person explicitly asked for a recommendation that my product genuinely fits, and then disclose it's mine. Never invent experience.
+- Never open a reply with what I haven't done or don't have ("I don't…", "I haven't…", "I can't…"). Lead with the one concrete thing I can add: a fact from my own build, a specific question about their post, or a sharp observation.
+- If I have nothing real to add to a post, drop it from the list instead of writing a disclaimer reply. A specific question is a valid reply.
+- Prefer posts where Straitwatch facts (`products/mobile-game.md`) or this bot are genuinely relevant: tower defense, roguelites, mobile game dev, playtesting, building games with AI agents, coding from a phone.
 
 STEP 3: Answer with ONLY the issue body in Markdown, formatted exactly like this (no preamble, no closing remarks, no code fence around the whole thing). Use real post/profile URLs from your search results. Never invent a URL, number or post.
 
