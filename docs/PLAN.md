@@ -82,7 +82,7 @@ Three actors, each doing only what it is allowed and good at:
 ### Phase 1 — Publisher ✅ built
 - `publisher/publish.py`: parses `queue/*.md`, posts due drafts via X API v2 (OAuth 1.0a, stdlib only), threads as self-replies, appends to `ledger/posts.jsonl` immediately after each post (no double posts on crash), archives to `queue/posted/`.
 - Approval: a draft is only posted if its last commit belongs to a PR merged into `main` (checked via the GitHub API). Direct pushes to `main` are blocked.
-- Caps: ≤3/day, ≥90 min apart, 1 per run, skip if > 3 h late (no catch-up bursts). Tunable in `publisher/config.json`.
+- Caps: ≤3/day, ≥90 min apart, 1 per run (no catch-up bursts). A draft merged after its slot posts at the next free slot; skipped only if > 48 h late. Tunable in `publisher/config.json`.
 - `publish.yml` runs at :07 and :37 each hour + manual, `concurrency: ledger-writer` so runs never overlap.
 - `validate.yml` on every PR: unit tests + draft rules (≤280 weighted chars, no URLs, no TODOs, valid pillar/product, spacing, daily cap).
 - **Dry run unless repo variable `PUBLISH_ENABLED=true`.** Setup steps: [SETUP.md](SETUP.md).

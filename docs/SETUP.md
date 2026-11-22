@@ -85,5 +85,5 @@ The publisher only posts a draft if the **last commit that touched the file is p
 | `X API HTTP 402` / credits | Top up credits in the Developer Console. |
 | `X API HTTP 403 … duplicate` | X refuses identical text. Change the draft. |
 | `BLOCKED … not part of a merged PR` | The draft was edited directly on `main`. Re-submit it through a PR. |
-| `skip … stale` | It was > 3 h late (e.g. publishing was disabled). Change `scheduled_at` in a PR. |
+| `skip … stale` | It was > 48 h late (e.g. publishing was disabled for days). Change `scheduled_at` in a PR. A draft merged after its slot but within 48 h just posts at the next free slot. |
 | `defer … gap/cap` | Working as intended (≥ 90 min apart, ≤ 3/day). Tune in `publisher/config.json`. |

@@ -28,6 +28,17 @@ class PlanTest(unittest.TestCase):
         self.assertIn("stale", joined)
         self.assertIn("hold", joined)
 
+    def test_late_merge_rolls_forward_one_at_a_time(self):
+        # Real config: drafts merged hours after their slot still post, oldest first, one per run.
+        cfg = xbot.load_config()
+        a = make_draft(self.tmp, "a", "2026-11-22T09:00:00Z")   # 6 h late
+        b = make_draft(self.tmp, "b", "2026-11-22T11:30:00Z")
+        to_post, notes = publish.plan(NOW, cfg, [b, a], [])
+        self.assertEqual([d.id for d in to_post], ["a"])
+        self.assertIn("defer b", " ".join(notes))
+        old = make_draft(self.tmp, "old", "2026-11-19T09:00:00Z")  # > 48 h late
+        self.assertEqual(publish.plan(NOW, cfg, [old], [])[0], [])
+
     def test_already_posted_and_gap_and_cap(self):
         d = make_draft(self.tmp, "d", "2026-11-22T14:50:00Z")
         self.assertEqual(publish.plan(NOW, CFG, [d], [{"id": "d", "posted_at": "2026-11-22T10:00:00Z"}])[0], [])
