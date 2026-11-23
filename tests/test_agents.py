@@ -89,3 +89,30 @@ class WriterTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class XLinksTest(unittest.TestCase):
+    BODY = "\n".join([
+        "I'll search first.## 🎯 Intent (reply personally, highest value)",
+        "- [ ] https://x.com/SiobaYT/status/2124422648914444478 · @SiobaYT (185) · why: testers",
+        "  > draft: Android and 14 days is a real window. Which fight breaks?",
+        "",
+        "## ➕ Follow suggestions",
+        "- [ ] https://x.com/dvmartos · why: solo dev",
+        "",
+        "## ❤️ Like suggestions",
+        "- [ ] https://x.com/dhh/status/2124474336996422046",
+    ])
+
+    def test_links(self):
+        out = run.add_x_links(run.drop_preamble(self.BODY))
+        self.assertTrue(out.startswith("## 🎯 Intent"))
+        self.assertIn("  >\n  > [**Reply in X ↗**](https://x.com/intent/post?in_reply_to=2124422648914444478"
+                      "&text=Android+and+14+days+is+a+real+window.+Which+fight+breaks%3F)", out)
+        self.assertIn("· [Follow ↗](https://x.com/intent/follow?screen_name=dvmartos)", out)
+        self.assertIn("· [Like ↗](https://x.com/intent/like?tweet_id=2124474336996422046)", out)
+        # a status URL in the follow section is not mistaken for a profile
+        self.assertNotIn("screen_name=SiobaYT", out)
+
+    def test_no_preamble_untouched(self):
+        self.assertEqual(run.drop_preamble("## A\nx"), "## A\nx")

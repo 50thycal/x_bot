@@ -7,8 +7,11 @@
 - "AI agents" automation "open source"
 - "game development" "AI playtesting"
 
-## Customer-intent and builder-intent phrases (highest value)
-- "looking for playtesters"
+## Builder phrases (highest value: people explaining how they built something)
+- "how I built" game OR tool OR agent
+- "playtesting bot" OR "automated playtesting" OR "balance sim"
+- devlog "under the hood" OR "how it works"
+- "built with Claude Code" OR "built with Codex" game
 - "anyone building with Claude Code"
 - "coding on my phone" OR "coding from my iPhone"
 - "how do you automate" X OR twitter posting

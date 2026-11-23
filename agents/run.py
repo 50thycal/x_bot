@@ -17,6 +17,7 @@ import os
 import re
 import sys
 from pathlib import Path
+from urllib.parse import urlencode
 
 from agents import gh, xai
 from publisher import validate, xbot
@@ -105,6 +106,50 @@ def summary(lines: list[str]) -> None:
 
 # --------------------------------------------------------------------------- scout
 
+STATUS_RE = re.compile(r"https://(?:x|twitter)\.com/[A-Za-z0-9_]{1,15}/status/(\d+)")
+PROFILE_RE = re.compile(r"https://(?:x|twitter)\.com/([A-Za-z0-9_]{1,15})(?![A-Za-z0-9_/])")
+ITEM_RE = re.compile(r"\s*- \[[ xX]\] ")
+DRAFT_RE = re.compile(r"^(\s*)>\s*draft:\s*(.+?)\s*$")
+
+
+def add_x_links(body: str) -> str:
+    """Add one-tap X links: a pre-filled reply under each draft, Like on like items, Follow on follow items.
+
+    Uses X web intents, which open X's own composer/confirm screen. A person still taps Post/Like/Follow,
+    so nothing is automated on X.
+    """
+    out: list[str] = []
+    section, status_id = "", None
+    for line in body.splitlines():
+        if line.startswith("## "):
+            section, status_id = line.lower(), None
+            out.append(line)
+            continue
+        if ITEM_RE.match(line):
+            m = STATUS_RE.search(line)
+            status_id = m.group(1) if m else None
+            if "like" in section and status_id:
+                line += f" · [Like ↗](https://x.com/intent/like?tweet_id={status_id})"
+            elif "follow" in section and (p := PROFILE_RE.search(line)):
+                line += f" · [Follow ↗](https://x.com/intent/follow?screen_name={p.group(1)})"
+            out.append(line)
+            continue
+        d = DRAFT_RE.match(line)
+        if d and status_id:
+            url = "https://x.com/intent/post?" + urlencode({"in_reply_to": status_id, "text": d.group(2)})
+            out += [line, f"{d.group(1)}>", f"{d.group(1)}> [**Reply in X ↗**]({url})"]
+            status_id = None
+            continue
+        out.append(line)
+    return "\n".join(out)
+
+
+def drop_preamble(body: str) -> str:
+    """Grok sometimes narrates before the first heading ("I'll search..."). Keep from the first '## '."""
+    i = body.find("## ")
+    return body[i:] if i > 0 else body
+
+
 def scout(now: dt.datetime, dry_run: bool) -> int:
     date = now.date().isoformat()
     title = f"Engagement queue — {date}"
@@ -114,18 +159,18 @@ def scout(now: dt.datetime, dry_run: bool) -> int:
     prev = [] if dry_run and not os.environ.get("GITHUB_TOKEN") else gh.issues_with_label(SCOUT_LABEL, 7)
     user = "\n".join([
         f"Today is {date} (UTC). Search window: the last 24 hours.\n",
-        *(block(f, read(f)) for f in ("brain/brand-bible.md", "brain/targets.md",
-                                      "brain/playbook.md", "brain/voice.md")),
+        *(block(f, read(f)) for f in ("brain/brand-bible.md", "brain/targets.md", "brain/playbook.md",
+                                      "brain/voice.md", "brain/replies.md", "brain/products/mobile-game.md")),
         block("recent Engagement queue issues", issues_block(prev)),
     ])
     res = xai.respond(user, instructions=(PROMPTS / "scout.md").read_text(),
                       tools=[xai.x_search_tool(from_date=(now - dt.timedelta(days=2)).date().isoformat())],
                       max_turns=int_env("XAI_MAX_TURNS", 8))
-    body = strip_outer_fence(res.text)
+    body = drop_preamble(strip_outer_fence(res.text))
     if not body:
         summary(["## Scout\nFAILED: empty answer from Grok", res.usage_line()])
         return 1
-    body += footer(res)
+    body = add_x_links(body) + footer(res)
     if dry_run:
         summary([f"## Scout (dry run)\nWOULD CREATE issue: {title}", res.usage_line(), "", body])
         return 0
