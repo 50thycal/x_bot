@@ -20,6 +20,9 @@ Sync first: `git fetch origin main && git merge origin/main` (latest `brain/`, `
   workflow with `actions_run_trigger` (workflow `daily.yml`, ref `main`), then wait for it with Monitor and an until-loop
   that polls `git fetch origin main` + `git cat-file -e origin/main:data/x/<TODAY>.json` every 30 s (foreground `sleep`
   is blocked). Give up after ~25 min, and also stop early if `actions_list` shows the run failed. Then merge `origin/main`.
+  If the dispatch is refused (403 "Resource not accessible by integration"), don't wait: the scheduled 13:17 UTC `daily`
+  workflow collects by itself. Use the newest data file if there is one; with no data at all, stop and tell me to run
+  Actions → daily → Run workflow.
 - Else (not due, or the wait timed out or failed) → use the newest data file and say so in your summary.
 
 ## 1. Read first
