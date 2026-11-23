@@ -87,6 +87,21 @@ def clean(data: dict, seen: set[str], now: dt.datetime) -> dict:
     return {"posts": posts, "mentions": mentions[:20], "accounts": accounts[:10], "trends": trends}
 
 
+def week_spend(now: dt.datetime) -> tuple[float, int]:
+    """Grok cost (USD) and number of collects in the last 7 days, from the files themselves."""
+    total, n = 0.0, 0
+    for p in DATA_DIR.glob("*.json") if DATA_DIR.exists() else []:
+        try:
+            if (now.date() - dt.date.fromisoformat(p.stem)).days >= 7:
+                continue
+            c = json.loads(p.read_text(encoding="utf-8")).get("cost_usd")
+        except (OSError, ValueError):
+            continue
+        n += 1
+        total += c if isinstance(c, (int, float)) else float(os.environ.get("COLLECT_COST_GUESS_USD", "1.0"))
+    return total, n
+
+
 def collect(now: dt.datetime, dry_run: bool) -> int:
     date = now.date().isoformat()
     out = DATA_DIR / f"{date}.json"
@@ -103,6 +118,11 @@ def collect(now: dt.datetime, dry_run: bool) -> int:
         if age < every:
             summary([f"## Collect\nskip: {latest[0].name} is {age} day(s) old (COLLECT_EVERY_DAYS={every})"])
             return 0
+    cap = float(os.environ.get("GROK_WEEKLY_BUDGET_USD", "").strip() or 4.0)  # keep well inside the Grok Plus weekly allowance
+    spent, runs = week_spend(now)
+    if not dry_run and spent >= cap:
+        summary([f"## Collect\nskip: ${spent:.2f} spent on {runs} collect(s) in the last 7 days, cap ${cap:.2f} (GROK_WEEKLY_BUDGET_USD)"])
+        return 0
     targets = read("brain/targets.md")
     seen = recent_links()
     user = "\n".join([
@@ -121,7 +141,8 @@ def collect(now: dt.datetime, dry_run: bool) -> int:
     except (ValueError, json.JSONDecodeError) as e:
         summary(["## Collect\nFAILED: could not parse Grok's answer", str(e), res.usage_line(), "", res.text[:2000]])
         return 1
-    data = {"date": date, "collected_at": xbot.iso(now), "usage": res.usage_line(), **data}
+    data = {"date": date, "collected_at": xbot.iso(now), "usage": res.usage_line(),
+            "cost_usd": res.cost_usd, **data}
     counts = ", ".join(f"{k} {len(data[k])}" for k in ("posts", "mentions", "accounts", "trends"))
     if dry_run:
         summary([f"## Collect (dry run)\n{counts}", res.usage_line(), "", "```json", json.dumps(data, indent=1)[:6000], "```"])
