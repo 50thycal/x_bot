@@ -1,5 +1,6 @@
 name: daily
-# Grok collects raw X data -> Claude picks replies, drafts posts, opens the issue + drafts PR.
+# Grok collects raw X data and commits it to data/x/. Claude (a scheduled Claude Code session, see
+# docs/SETUP.md 3c) then reads it and writes the issue + drafts PR.
 # 13:17 UTC = 7:17 am US Central (CST). GitHub often starts scheduled runs late; that's fine
 # (drafts merged after their slot post at the next free slot).
 on:
@@ -44,41 +45,3 @@ jobs:
             sleep $((i * 5))
           done
           exit 1
-
-  claude:
-    needs: collect
-    if: always() && vars.AGENTS_ENABLED != 'false'   # still write drafts if Grok failed; it reuses the latest data
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
-    permissions:
-      contents: write          # push drafts/DATE branch (prompt + allowed commands never touch main)
-      issues: write
-      pull-requests: write
-      actions: write           # dispatch validate.yml on the drafts branch
-      id-token: write          # required by claude-code-action
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: main            # include the data just committed by the collect job
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-      - name: Date and labels
-        id: d
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          echo "today=$(date -u +%F)" >> "$GITHUB_OUTPUT"
-          echo "TODAY=$(date -u +%F)" >> "$GITHUB_ENV"
-          gh label create engagement-queue --color 1d76db --force
-          git config user.name "x-bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - uses: anthropics/claude-code-action@v1
-        env:
-          GH_TOKEN: ${{ github.token }}
-        with:
-          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          prompt: "TODAY=${{ steps.d.outputs.today }}. Read agents/claude/daily.md and follow it exactly."
-          claude_args: |
-            --max-turns 60
-            --allowedTools "Read,Write,Edit,Glob,Grep,Bash(python -m agents.links *),Bash(python -m publisher.validate),Bash(gh issue list *),Bash(gh issue create *),Bash(gh pr list *),Bash(gh pr create *),Bash(gh workflow run validate.yml *),Bash(git status),Bash(git diff *),Bash(git log *),Bash(git checkout -b drafts/*),Bash(git add queue/*),Bash(git commit *),Bash(git push -u origin drafts/*),Bash(ls *),Bash(date *),Bash(echo *)"

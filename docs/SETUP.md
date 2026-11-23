@@ -63,22 +63,20 @@ Notes:
 
 ## 3c. Grok collects, Claude writes (active)
 
-`daily.yml` replaces the Grok-only scout and writer; `weekly.yml` replaces the Grok weekly review.
+Two halves. No Claude token or GitHub secret is needed for the Claude half.
 
-| Workflow | When (UTC) | What |
+| Piece | When (UTC) | What |
 |---|---|---|
-| `daily` → job `collect` | 13:17 | Grok searches X (≤ 12 searches) and commits raw data to `data/x/DATE.json`. Runs every `COLLECT_EVERY_DAYS` (default 2) days to save the Grok Plus allowance. |
-| `daily` → job `claude` | right after | Claude reads `brain/`, the newest data, the ledger and recent queues, then opens "Engagement queue — DATE" and the "Drafts for DATE" PR. Instructions: `agents/claude/daily.md`. |
-| `weekly` | Mon 00:13 | Claude analyses the ledger and opens "Weekly review — DATE" (+ a playbook PR when the evidence supports it). Instructions: `agents/claude/weekly.md`. |
+| `daily` workflow (Grok) | 13:17 (GitHub often starts it hours late) | Grok searches X (≤ 12 searches) and commits raw data to `data/x/DATE.json`. Runs every `COLLECT_EVERY_DAYS` (default 2) days to save the Grok Plus allowance. |
+| Scheduled Claude Code session "daily" | ~15:xx | Claude reads `brain/`, the newest data, the ledger and recent queues, then opens "Engagement queue — DATE" and the "Drafts for DATE" PR. If collection is due and the data isn't there yet, it dispatches the `daily` workflow and waits. Instructions: `agents/claude/daily.md`. |
+| Scheduled Claude Code session "weekly" | Sunday evening US Central | Claude analyses the ledger and opens "Weekly review — DATE" (+ a playbook PR when the evidence supports it). Instructions: `agents/claude/weekly.md`. |
 
-Setup (once):
-1. On your Mac: `claude setup-token`. It opens a browser login and prints a token (valid 1 year, billed to your Claude plan).
-2. Repo → Settings → Secrets and variables → Actions → New repository secret: **`CLAUDE_CODE_OAUTH_TOKEN`** = that token.
-3. Make sure the Claude GitHub App is installed on this repo: https://github.com/apps/claude
-4. Actions → **daily** → Run workflow. Check the run summary, the new issue and the drafts PR.
+The scheduled sessions run on your Claude plan (claude.ai/code → scheduled tasks), not in GitHub Actions.
+Each is a fresh session with the repo attached; its prompt just says "clone/read the repo and follow `agents/claude/daily.md`".
+Claude has no `gh` CLI there: it uses the GitHub tools, can only push to its own session branch, and can't merge.
+That's fine: the publisher only cares that drafts arrive on `main` through a merged PR.
 
-Claude can only run the commands listed in the workflow (`--allowedTools`): read/write files, `gh issue/pr create`,
-`git push` to `drafts/*` or `review/*`. It cannot push to `main` or merge. The old `agent-*` workflows stay as manual fallbacks.
+Setup (once): in the Claude Code session that built this, ask it to create the two scheduled tasks. Nothing to do on GitHub.
 
 ## 4. Dry run → first live post
 
