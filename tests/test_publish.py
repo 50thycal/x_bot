@@ -104,3 +104,72 @@ class PublishOneTest(unittest.TestCase):
             with self.assertRaises(RuntimeError):
                 publish.publish_one(d, poster, NOW, tmp / "l.jsonl")
             self.assertEqual(xbot.load_ledger(tmp / "l.jsonl"), [])
+
+
+class MediaTest(unittest.TestCase):
+    def test_video_uploaded_first_and_attached_to_part_one(self):
+        with tempfile.TemporaryDirectory() as t:
+            tmp = Path(t)
+            (tmp / "clip.mp4").write_bytes(b"x" * 10)
+            d = make_draft(tmp, "vid", "2026-11-22T14:30:00Z", body="one\n---8<---\ntwo", type="thread",
+                           media="clip.mp4")
+            d.meta["media"] = str(tmp / "clip.mp4")      # absolute path joins cleanly onto ROOT
+            calls = []
+
+            def poster(text, reply_to, media_ids=None):
+                calls.append((text, reply_to, media_ids))
+                return str(100 + len(calls))
+
+            e = publish.publish_one(d, poster, NOW, tmp / "l.jsonl", uploader=lambda p: "m1")
+            self.assertEqual(calls, [("one", None, ["m1"]), ("two", "101", None)])
+            self.assertTrue(e["features"]["has_media"])
+
+    def test_upload_failure_posts_nothing(self):
+        with tempfile.TemporaryDirectory() as t:
+            tmp = Path(t)
+            (tmp / "clip.mp4").write_bytes(b"x")
+            d = make_draft(tmp, "vid2", "2026-11-22T14:30:00Z", body="hi", media=str(tmp / "clip.mp4"))
+            posted = []
+
+            def boom(p):
+                raise RuntimeError("nope")
+
+            with self.assertRaises(RuntimeError):
+                publish.publish_one(d, lambda *a, **k: posted.append(a) or "1", NOW, tmp / "l.jsonl", uploader=boom)
+            self.assertEqual(posted, [])
+            self.assertFalse((tmp / "l.jsonl").exists())
+
+    def test_validate_missing_and_wrong_media(self):
+        with tempfile.TemporaryDirectory() as t:
+            tmp = Path(t)
+            d = make_draft(tmp, "m3", "2026-11-22T14:30:00Z", body="hi", media="queue/media/does-not-exist.mp4")
+            self.assertTrue(any("media file not found" in e for e in xbot.validate_draft(d, CFG)))
+            (tmp / "a.mov").write_bytes(b"x")
+            d2 = make_draft(tmp, "m4", "2026-11-22T14:30:00Z", body="hi", media=str(tmp / "a.mov"))
+            self.assertTrue(any("must be .mp4" in e for e in xbot.validate_draft(d2, CFG)))
+
+    def test_upload_video_flow(self):
+        calls = []
+
+        def fake_request(method, path, creds, query=None, body=None):
+            calls.append((method, path))
+            if path.endswith("/initialize"):
+                return {"data": {"id": "42"}}
+            if path.endswith("/finalize"):
+                return {"data": {"id": "42", "processing_info": {"state": "pending", "check_after_secs": 1}}}
+            return {"data": {"processing_info": {"state": "succeeded"}}}
+
+        with tempfile.TemporaryDirectory() as t:
+            f = Path(t) / "c.mp4"
+            f.write_bytes(b"x" * (xbot.CHUNK_BYTES + 5))        # two chunks
+            parts = []
+            orig_req, orig_mp = xbot.x_request, xbot._x_multipart
+            xbot.x_request = fake_request
+            xbot._x_multipart = lambda path, creds, fields, name, data: parts.append((path, fields["segment_index"], len(data)))
+            try:
+                mid = xbot.upload_video(f, xbot.XCreds("a", "b", "c", "d"), sleep=lambda s: None)
+            finally:
+                xbot.x_request, xbot._x_multipart = orig_req, orig_mp
+        self.assertEqual(mid, "42")
+        self.assertEqual(parts, [("/media/upload/42/append", 0, xbot.CHUNK_BYTES), ("/media/upload/42/append", 1, 5)])
+        self.assertEqual([c[1] for c in calls], ["/media/upload/initialize", "/media/upload/42/finalize", "/media/upload"])

@@ -23,6 +23,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 QUEUE_DIR = ROOT / "queue"
 POSTED_DIR = QUEUE_DIR / "posted"
+MEDIA_DIR = QUEUE_DIR / "media"
+MAX_VIDEO_BYTES = 512 * 1024 * 1024   # X limit for tweet_video
 LEDGER_PATH = ROOT / "ledger" / "posts.jsonl"
 CONFIG_PATH = Path(__file__).resolve().parent / "config.json"
 
@@ -116,6 +118,15 @@ class Draft:
     def hold(self) -> bool:
         return bool(self.meta.get("hold", False))
 
+    @property
+    def media_path(self) -> Path | None:
+        """Video attached to the first part: `media:` (repo-relative path) or queue/media/<id>.mp4 if present."""
+        rel = self.meta.get("media")
+        if rel:
+            return ROOT / str(rel)
+        guess = MEDIA_DIR / f"{self.id}.mp4"
+        return guess if guess.exists() else None
+
 
 def split_parts(body: str) -> list[str]:
     parts = [p.strip() for p in re.split(rf"^\s*{re.escape(THREAD_SPLIT)}\s*$", body, flags=re.M)]
@@ -179,6 +190,16 @@ def validate_draft(d: Draft, cfg: dict) -> list[str]:
         errs.append(f"type original has {len(d.parts)} parts; use type: thread")
     if len(d.parts) > cfg["max_thread_parts"]:
         errs.append(f"{len(d.parts)} parts > max {cfg['max_thread_parts']}")
+    m = d.media_path
+    if d.meta.get("media") and (m is None or not m.is_file()):
+        errs.append(f"media file not found: {d.meta['media']}")
+    elif m is not None:
+        if m.suffix.lower() != ".mp4":
+            errs.append(f"media must be .mp4, got {m.suffix}")
+        elif m.stat().st_size > MAX_VIDEO_BYTES:
+            errs.append(f"media is {m.stat().st_size // 1_000_000} MB (> 512 MB)")
+        elif m.stat().st_size == 0:
+            errs.append("media file is empty")
     for i, p in enumerate(d.parts, 1):
         n = weighted_length(p)
         if n > 280:
@@ -295,6 +316,65 @@ def x_request_full(method: str, path: str, creds: XCreds, query: dict | None = N
             return json.loads(resp.read().decode() or "{}"), headers
     except urllib.error.HTTPError as e:
         raise XError(e.code, e.read().decode(errors="replace")) from None
+
+
+# --------------------------------------------------------------------------- video upload (X API v2 chunked)
+
+CHUNK_BYTES = 4 * 1024 * 1024
+
+
+def _multipart(fields: dict, file_field: str, filename: str, data: bytes) -> tuple[bytes, str]:
+    boundary = secrets.token_hex(16)
+    out = b""
+    for k, v in fields.items():
+        out += f'--{boundary}\r\nContent-Disposition: form-data; name="{k}"\r\n\r\n{v}\r\n'.encode()
+    out += (f'--{boundary}\r\nContent-Disposition: form-data; name="{file_field}"; filename="{filename}"\r\n'
+            f"Content-Type: application/octet-stream\r\n\r\n").encode() + data + b"\r\n"
+    out += f"--{boundary}--\r\n".encode()
+    return out, f"multipart/form-data; boundary={boundary}"
+
+
+def _x_multipart(path: str, creds: XCreds, fields: dict, filename: str, data: bytes) -> None:
+    url = f"{X_API}{path}"
+    body, ctype = _multipart(fields, "media", filename, data)
+    headers = {"Authorization": oauth1_header("POST", url, {}, creds), "Content-Type": ctype,
+               "User-Agent": "x-bot-publisher"}
+    req = urllib.request.Request(url, data=body, method="POST", headers=headers)
+    try:
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            resp.read()
+    except urllib.error.HTTPError as e:
+        raise XError(e.code, e.read().decode(errors="replace")) from None
+
+
+def _media_id(resp: dict) -> str:
+    d = resp.get("data", resp)
+    return str(d.get("id") or d.get("media_id_string") or d["media_id"])
+
+
+def upload_video(path: Path, creds: XCreds, sleep=time.sleep, max_wait_s: int = 300) -> str:
+    """Upload an mp4 with the v2 chunked flow (initialize -> append -> finalize -> poll). Returns the media id."""
+    data = Path(path).read_bytes()
+    init = x_request("POST", "/media/upload/initialize", creds,
+                     body={"media_type": "video/mp4", "total_bytes": len(data), "media_category": "tweet_video"})
+    mid = _media_id(init)
+    for i, off in enumerate(range(0, len(data), CHUNK_BYTES)):
+        _x_multipart(f"/media/upload/{mid}/append", creds, {"segment_index": i}, Path(path).name,
+                     data[off:off + CHUNK_BYTES])
+    fin = x_request("POST", f"/media/upload/{mid}/finalize", creds)
+    info = fin.get("data", fin).get("processing_info")
+    waited = 0
+    while info and info.get("state") in ("pending", "in_progress"):
+        if waited > max_wait_s:
+            raise RuntimeError(f"video {mid} still processing after {max_wait_s}s")
+        wait = int(info.get("check_after_secs", 5))
+        sleep(wait)
+        waited += wait
+        st = x_request("GET", "/media/upload", creds, query={"command": "STATUS", "media_id": mid})
+        info = st.get("data", st).get("processing_info")
+    if info and info.get("state") == "failed":
+        raise RuntimeError(f"video processing failed: {info.get('error', info)}")
+    return mid
 
 
 # --------------------------------------------------------------------------- GitHub approval check
