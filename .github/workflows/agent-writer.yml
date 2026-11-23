@@ -1,9 +1,7 @@
 name: agent-writer
 # Fallback B: Daily Writer through the xAI API. Opens a "Drafts for DATE" PR (merge = approve).
 # 02:03 UTC = 8:03 pm US Central (CST) the evening before the drafts' date.
-on:
-  schedule:
-    - cron: "3 2 * * *"
+on:   # schedule removed: replaced by daily.yml / weekly.yml (Grok collects, Claude writes). Manual fallback only.
   workflow_dispatch: {}
 permissions:
   contents: write        # push the drafts/DATE branch (never main)

@@ -61,6 +61,25 @@ Notes:
 - Pause the three Grok automations (grok.com → Settings → Automations) so they don't run in parallel.
 - Daylight saving: the crons are fixed UTC, so in summer they run one hour later local time.
 
+## 3c. Grok collects, Claude writes (active)
+
+`daily.yml` replaces the Grok-only scout and writer; `weekly.yml` replaces the Grok weekly review.
+
+| Workflow | When (UTC) | What |
+|---|---|---|
+| `daily` → job `collect` | 13:17 | Grok searches X (≤ 12 searches) and commits raw data to `data/x/DATE.json`. Runs every `COLLECT_EVERY_DAYS` (default 2) days to save the Grok Plus allowance. |
+| `daily` → job `claude` | right after | Claude reads `brain/`, the newest data, the ledger and recent queues, then opens "Engagement queue — DATE" and the "Drafts for DATE" PR. Instructions: `agents/claude/daily.md`. |
+| `weekly` | Mon 00:13 | Claude analyses the ledger and opens "Weekly review — DATE" (+ a playbook PR when the evidence supports it). Instructions: `agents/claude/weekly.md`. |
+
+Setup (once):
+1. On your Mac: `claude setup-token`. It opens a browser login and prints a token (valid 1 year, billed to your Claude plan).
+2. Repo → Settings → Secrets and variables → Actions → New repository secret: **`CLAUDE_CODE_OAUTH_TOKEN`** = that token.
+3. Make sure the Claude GitHub App is installed on this repo: https://github.com/apps/claude
+4. Actions → **daily** → Run workflow. Check the run summary, the new issue and the drafts PR.
+
+Claude can only run the commands listed in the workflow (`--allowedTools`): read/write files, `gh issue/pr create`,
+`git push` to `drafts/*` or `review/*`. It cannot push to `main` or merge. The old `agent-*` workflows stay as manual fallbacks.
+
 ## 4. Dry run → first live post
 
 1. **Actions → publish → Run workflow.** Open the run's Summary: it should say `DRY RUN` and either `nothing due` or `WOULD POST …`.

@@ -1,0 +1,38 @@
+name: weekly
+# Claude reads the ledger + engagement queues and proposes <= 3 evidence-backed playbook edits.
+# Mon 00:13 UTC = Sun 6:13 pm US Central (CST).
+on:
+  schedule:
+    - cron: "13 0 * * 1"
+  workflow_dispatch: {}
+jobs:
+  review:
+    if: vars.AGENTS_ENABLED != 'false'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write          # push review/DATE branch (never main)
+      issues: write
+      pull-requests: write
+      id-token: write          # required by claude-code-action
+    steps:
+      - uses: actions/checkout@v4
+      - name: Date and labels
+        id: d
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "today=$(date -u +%F)" >> "$GITHUB_OUTPUT"
+          echo "TODAY=$(date -u +%F)" >> "$GITHUB_ENV"
+          gh label create weekly-review --color 5319e7 --force
+          git config user.name "x-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - uses: anthropics/claude-code-action@v1
+        env:
+          GH_TOKEN: ${{ github.token }}
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: "TODAY=${{ steps.d.outputs.today }}. Read agents/claude/weekly.md and follow it exactly."
+          claude_args: |
+            --max-turns 40
+            --allowedTools "Read,Write,Edit,Glob,Grep,Bash(gh issue list *),Bash(gh issue create *),Bash(gh pr create *),Bash(git status),Bash(git diff *),Bash(git log *),Bash(git checkout -b review/*),Bash(git add brain/playbook.md),Bash(git add brain/pillars.md),Bash(git commit *),Bash(git push -u origin review/*),Bash(ls *),Bash(date *),Bash(echo *)"
