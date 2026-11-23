@@ -159,8 +159,8 @@ def scout(now: dt.datetime, dry_run: bool) -> int:
     prev = [] if dry_run and not os.environ.get("GITHUB_TOKEN") else gh.issues_with_label(SCOUT_LABEL, 7)
     user = "\n".join([
         f"Today is {date} (UTC). Search window: the last 24 hours.\n",
-        *(block(f, read(f)) for f in ("brain/brand-bible.md", "brain/targets.md",
-                                      "brain/playbook.md", "brain/voice.md")),
+        *(block(f, read(f)) for f in ("brain/brand-bible.md", "brain/targets.md", "brain/playbook.md",
+                                      "brain/voice.md", "brain/replies.md", "brain/products/mobile-game.md")),
         block("recent Engagement queue issues", issues_block(prev)),
     ])
     res = xai.respond(user, instructions=(PROMPTS / "scout.md").read_text(),
