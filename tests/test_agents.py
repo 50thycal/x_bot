@@ -116,3 +116,13 @@ class XLinksTest(unittest.TestCase):
 
     def test_no_preamble_untouched(self):
         self.assertEqual(run.drop_preamble("## A\nx"), "## A\nx")
+
+
+class SeenBlockTest(unittest.TestCase):
+    def test_only_links_deduped(self):
+        issues = [{"title": "Engagement queue — 2026-11-22", "body":
+                   "- [ ] https://x.com/a/status/1 · why\n  > draft: long text here\n"
+                   "- [ ] https://x.com/bob · why\n- [ ] https://x.com/a/status/1"}]
+        self.assertEqual(run.seen_block(issues),
+                         "Engagement queue — 2026-11-22: https://x.com/a/status/1 https://x.com/bob")
+        self.assertEqual(run.seen_block([]), "(none yet)")

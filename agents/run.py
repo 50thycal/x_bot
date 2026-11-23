@@ -144,6 +144,18 @@ def add_x_links(body: str) -> str:
     return "\n".join(out)
 
 
+def seen_block(issues: list[dict]) -> str:
+    """Compact history for dedup: just the X links each recent queue suggested, not the full issue text."""
+    if not issues:
+        return "(none yet)"
+    url_re = re.compile(r"https://(?:x|twitter)\.com/[A-Za-z0-9_]{1,15}(?:/status/\d+)?(?![A-Za-z0-9_/])")
+    lines = []
+    for i in issues:
+        urls = list(dict.fromkeys(url_re.findall(i.get("body") or "")))
+        lines.append(f"{i.get('title', '')}: " + (" ".join(urls) or "(no links)"))
+    return "\n".join(lines)
+
+
 def drop_preamble(body: str) -> str:
     """Grok sometimes narrates before the first heading ("I'll search..."). Keep from the first '## '."""
     i = body.find("## ")
@@ -156,16 +168,19 @@ def scout(now: dt.datetime, dry_run: bool) -> int:
     if not dry_run and gh.find_issue(title, SCOUT_LABEL):
         summary([f"## Scout\nskip: issue '{title}' already exists"])
         return 0
-    prev = [] if dry_run and not os.environ.get("GITHUB_TOKEN") else gh.issues_with_label(SCOUT_LABEL, 7)
+    prev = [] if dry_run and not os.environ.get("GITHUB_TOKEN") else gh.issues_with_label(SCOUT_LABEL, 5)
     user = "\n".join([
         f"Today is {date} (UTC). Search window: the last 24 hours.\n",
         *(block(f, read(f)) for f in ("brain/brand-bible.md", "brain/targets.md", "brain/playbook.md",
                                       "brain/voice.md", "brain/replies.md", "brain/products/mobile-game.md")),
-        block("recent Engagement queue issues", issues_block(prev)),
+        block("already suggested in recent Engagement queues (do not repeat)", seen_block(prev)),
     ])
+    # Cost: every agent turn re-reads the whole context plus all search results so far, so turns
+    # (not searches) drive the bill. Scout gets its own small cap and an optional cheaper model.
     res = xai.respond(user, instructions=(PROMPTS / "scout.md").read_text(),
+                      model=os.environ.get("XAI_SCOUT_MODEL", "").strip() or None,
                       tools=[xai.x_search_tool(from_date=(now - dt.timedelta(days=2)).date().isoformat())],
-                      max_turns=int_env("XAI_MAX_TURNS", 8))
+                      max_turns=int_env("XAI_SCOUT_MAX_TURNS", 3))
     body = drop_preamble(strip_outer_fence(res.text))
     if not body:
         summary(["## Scout\nFAILED: empty answer from Grok", res.usage_line()])
