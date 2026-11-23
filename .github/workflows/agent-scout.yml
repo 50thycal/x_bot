@@ -5,8 +5,8 @@ name: agent-scout
 # it exits before calling xAI if today's issue already exists, so it costs nothing when the first run worked.
 on:
   schedule:
-    - cron: "3 14 * * *"
-    - cron: "33 18 * * *"
+    - cron: "3 14 */2 * *"    # every other day (odd days of the month) to halve the xAI bill
+    - cron: "33 18 */2 * *"
   workflow_dispatch: {}
 permissions:
   contents: read
@@ -28,6 +28,7 @@ jobs:
         env:
           XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
           XAI_MODEL: ${{ vars.XAI_MODEL }}
-          XAI_MAX_TURNS: ${{ vars.XAI_MAX_TURNS }}
+          XAI_SCOUT_MODEL: ${{ vars.XAI_SCOUT_MODEL }}
+          XAI_SCOUT_MAX_TURNS: ${{ vars.XAI_SCOUT_MAX_TURNS }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python -m agents.run scout

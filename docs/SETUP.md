@@ -41,7 +41,7 @@ workflow (not Grok) creates the issue / opens the PR, so Grok has no GitHub acce
 
 | Workflow | When (UTC) | Output |
 |---|---|---|
-| `agent-scout` | daily 14:03 (8:03 am CST) | issue "Engagement queue — DATE" |
+| `agent-scout` | every other day 14:03 (8:03 am CST) | issue "Engagement queue — DATE" |
 | `agent-writer` | daily 02:03 (8:03 pm CST) | PR "Drafts for DATE" (merge = approve) |
 | `agent-review` | Mon 00:13 (Sun 6:13 pm CST) | issue "Weekly review — DATE" (+ playbook PR if evidence) |
 
@@ -49,8 +49,10 @@ Setup:
 1. console.x.ai → API Keys → create a key → repo secret **`XAI_API_KEY`** (paste it yourself, never in chat/files).
 2. Repo → Settings → Actions → General → Workflow permissions → tick
    **Allow GitHub Actions to create and approve pull requests** (needed for the writer/review PRs).
-3. Optional repo variables: `XAI_MODEL` (default `grok-4.7`), `XAI_MAX_TURNS` (default 8; fewer turns = fewer X searches = cheaper Scout/Review), `AGENTS_ENABLED=false` to pause all three.
-   First real Scout run: grok-4.7, 8 turns, 48 searches, 122 posts → **$2.35**. Tune these two to bring it down.
+3. Optional repo variables: `XAI_MODEL` (default `grok-4.7`), `XAI_MAX_TURNS` (Weekly Review, default 8), `AGENTS_ENABLED=false` to pause all three.
+   Scout has its own knobs: `XAI_SCOUT_MAX_TURNS` (default 3) and `XAI_SCOUT_MODEL` (defaults to `XAI_MODEL`; set a cheaper Grok model from console.x.ai → Models to cut cost further).
+   Cost history: the first Scout runs (8 turns, 48–66 searches, ~600k input tokens) cost **$2.07–2.35**. Almost all of it is input tokens,
+   because every turn re-reads the context plus all search results. Scout now caps itself at 12 searches / 3 turns and runs every other day.
 4. Actions → **agent-scout** → Run workflow. The summary shows the issue link and the run's cost.
 
 Notes:
