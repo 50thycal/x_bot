@@ -16,11 +16,12 @@ import datetime as dt
 import os
 import shutil
 import sys
+from pathlib import Path
 from typing import Callable
 
 from publisher import xbot
 
-Poster = Callable[[str, "str | None"], str]          # (text, reply_to_id) -> new post id
+Poster = Callable[..., str]   # (text, reply_to_id, media_ids=None) -> new post id; media_ids only passed when set
 Approver = Callable[[xbot.Draft], "tuple[bool, str]"]  # draft -> (approved, reason)
 
 
@@ -33,7 +34,7 @@ def features_for(d: xbot.Draft, posted_at: dt.datetime) -> dict:
         "parts": len(d.parts),
         "hour_utc": posted_at.hour,
         "weekday": posted_at.strftime("%a"),
-        "has_media": False,
+        "has_media": d.media_path is not None,
         "needs_media": bool(d.meta.get("needs_media", False)),
     }
 
@@ -84,12 +85,24 @@ def plan(now: dt.datetime, cfg: dict, drafts: list[xbot.Draft], ledger: list[dic
     return to_post, notes
 
 
-def publish_one(d: xbot.Draft, poster: Poster, now: dt.datetime, ledger_path=xbot.LEDGER_PATH) -> dict:
+def publish_one(d: xbot.Draft, poster: Poster, now: dt.datetime, ledger_path=xbot.LEDGER_PATH,
+                uploader: Callable[[Path], str] | None = None) -> dict:
     ids: list[str] = []
     error = None
+    media_ids = None
+    if d.media_path is not None:
+        if uploader is None:
+            raise RuntimeError(f"{d.path.name}: has media but no uploader")
+        try:
+            media_ids = [uploader(d.media_path)]       # fail before posting anything
+        except Exception as e:
+            raise RuntimeError(f"{d.path.name}: video upload failed: {e}") from None
     for part in d.parts:
         try:
-            ids.append(poster(part, ids[-1] if ids else None))
+            if media_ids and not ids:
+                ids.append(poster(part, None, media_ids=media_ids))
+            else:
+                ids.append(poster(part, ids[-1] if ids else None))
         except Exception as e:  # record partial threads so part 1 is never re-posted
             error = str(e)
             break
@@ -144,8 +157,10 @@ def github_approver() -> Approver:
 
 
 def x_poster(creds: xbot.XCreds) -> Poster:
-    def post(text: str, reply_to: str | None) -> str:
+    def post(text: str, reply_to: str | None, media_ids: list[str] | None = None) -> str:
         body: dict = {"text": text}
+        if media_ids:
+            body["media"] = {"media_ids": media_ids}
         if reply_to:
             body["reply"] = {"in_reply_to_tweet_id": reply_to}
         resp = xbot.x_request("POST", "/tweets", creds, body=body)
@@ -203,11 +218,12 @@ def main() -> int:
             out.append(f"- BLOCKED {d.path.name}: {reason}")
             continue
         if not enabled:
-            out.append(f"- WOULD POST {d.path.name} ({reason}, {len(d.parts)} part(s)):")
+            vid = f", video {d.media_path.name}" if d.media_path else ""
+            out.append(f"- WOULD POST {d.path.name} ({reason}, {len(d.parts)} part(s){vid}):")
             out += [f"  > {line}" for line in d.body.splitlines()]
             continue
         try:
-            entry = publish_one(d, x_poster(creds), now)
+            entry = publish_one(d, x_poster(creds), now, uploader=lambda p: xbot.upload_video(p, creds))
             archive(d)
             out.append(f"- POSTED {d.path.name} -> {entry['url']} [{entry['status']}] ({reason})")
             if entry["error"]:
