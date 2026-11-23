@@ -1,0 +1,420 @@
+{
+ "date": "2026-11-23",
+ "collected_at": "2026-11-23T15:53:06Z",
+ "usage": "model grok-4.7 · tokens in/out 37320/20202 · tools x_search_calls=12, x_posts_fetched=86 · cost $0.6191",
+ "cost_usd": 0.619132,
+ "posts": [
+  {
+   "url": "https://x.com/MShahbazManzoor/status/2124879972116685011",
+   "author": "MShahbazManzoor",
+   "author_followers": null,
+   "posted_at": "2026-11-23T14:57:18Z",
+   "views": 11,
+   "likes": 1,
+   "replies": 0,
+   "reposts": 0,
+   "text": "The plan was simple: build in public, share as I go.\n\nThen I got busy building and stopped posting.\n\nSo I built SocialMCP. Now I post updates to X right from Claude Code, without leaving my work.\n\nThis post is the first one it sent.",
+   "matched": "\"Claude Code\" \"build in public\"",
+   "gold_ratio": null,
+   "age_h": 0.9
+  },
+  {
+   "url": "https://x.com/sageuxpro/status/2124874649322627430",
+   "author": "sageuxpro",
+   "author_followers": null,
+   "posted_at": "2026-11-23T14:36:09Z",
+   "views": 96,
+   "likes": 8,
+   "replies": 0,
+   "reposts": 1,
+   "text": "Completed Mission #001 of the Molades AI Anatomy program! 🎮\n\nBuilt DesignXP a retro arcade where product designers play challenges, learn UX techniques, explore product thinking and earn XP.\n\nBuilt with Claude Code + 8bitcn.\n\nhttps://designxpgg.vercel.app/\n\n@rajatpatel2113 @shaihq_",
+   "matched": "\"built with Claude Code\" game",
+   "gold_ratio": null,
+   "age_h": 1.3
+  },
+  {
+   "url": "https://x.com/jeffbruchado/status/2124857784365936677",
+   "author": "jeffbruchado",
+   "author_followers": null,
+   "posted_at": "2026-11-23T13:29:08Z",
+   "views": 62,
+   "likes": 1,
+   "replies": 1,
+   "reposts": 0,
+   "text": "small tools of my own built with ai, alongside dev work for companies. a solo micro saas in react is a good match for claude code, components are the part an agent gets wrong in the most visible and easy to fix ways",
+   "matched": "\"Claude Code\" \"build in public\"",
+   "gold_ratio": null,
+   "age_h": 2.4
+  },
+  {
+   "url": "https://x.com/zenorocha/status/2124878471268909412",
+   "author": "zenorocha",
+   "author_followers": null,
+   "posted_at": "2026-11-23T14:51:20Z",
+   "views": 2195,
+   "likes": 46,
+   "replies": 23,
+   "reposts": 3,
+   "text": "in Q4 last year, Resend merged 2,393 pull requests.\n\nin Q3 this year: 6,467 PRs.\n\nthe team doubled. pull requests almost tripled.\n\nand not all of them are engineers. marketing and operations merge code now.\n\nwe use Claude, Codex, Cursor, and a few agents we built ourselves.\n\nhere's what changed in how we ship software:\n\n∙ a reviewer agent comments on every pull request",
+   "matched": "Codex shipped",
+   "gold_ratio": null,
+   "age_h": 1.0
+  },
+  {
+   "url": "https://x.com/Calebsenm/status/2124887669113307386",
+   "author": "Calebsenm",
+   "author_followers": null,
+   "posted_at": "2026-11-23T15:27:53Z",
+   "views": 7,
+   "likes": 1,
+   "replies": 1,
+   "reposts": 0,
+   "text": "I was bored, so I started building an alternative to PoketBase. I used only free models and built things just to learn how to work with AI agents.\nAnd this was the result.\n#OpenSource #SoftwareDevelopment #SideProject #VibeCoding #TechProjects #Programming\nhttps://github.com/Calebsenm/Docpocket",
+   "matched": "\"AI agents\" automation \"open source\"",
+   "gold_ratio": null,
+   "age_h": 0.4
+  },
+  {
+   "url": "https://x.com/ssuunnyy/status/2124858776327279071",
+   "author": "ssuunnyy",
+   "author_followers": null,
+   "posted_at": "2026-11-23T13:33:04Z",
+   "views": 128,
+   "likes": 3,
+   "replies": 7,
+   "reposts": 0,
+   "text": "My first product has been live for a month. 23 clicks from Google. 2.77k visitors, almost all from one Reddit post. Revenue: $0. This is what the first month actually looks like. https://x.com/i/article/2124851376308338688",
+   "matched": "\"indie hacker\" \"side project\"",
+   "gold_ratio": null,
+   "age_h": 2.3
+  },
+  {
+   "url": "https://x.com/BenjaminPopp4/status/2124834407794331687",
+   "author": "BenjaminPopp4",
+   "author_followers": null,
+   "posted_at": "2026-11-23T11:56:14Z",
+   "views": 844,
+   "likes": 25,
+   "replies": 40,
+   "reposts": 0,
+   "text": "My feed this weekend:\n\nIf you're a solo founder, let's connect.\nIf you're building with AI, let's connect.\nIf you're an indie hacker, let's connect.\n\nLove it. I've posted one too.\n\nBut nobody says what they built. I'll go first: an hours tracker. Boring on purpose.\n\nYour turn.",
+   "matched": "\"indie hacker\" \"side project\"",
+   "gold_ratio": null,
+   "age_h": 3.9
+  },
+  {
+   "url": "https://x.com/brugiordano_x/status/2124779906978492656",
+   "author": "brugiordano_x",
+   "author_followers": null,
+   "posted_at": "2026-11-23T08:19:40Z",
+   "views": 60,
+   "likes": 1,
+   "replies": 4,
+   "reposts": 0,
+   "text": "A year ago I built a voice agent on my laptop. It recorded five seconds of audio, paused for a long time, and answered from a fake CRM.\n\nToday it joins the call, listens to everyone, and answers out loud when you call it by name.\n\nThe idea is a voice agent that sits in pipeline reviews, regional syncs and forecast calls, and acts as a best-in-class RevOps.",
+   "matched": "\"how I built\" agent",
+   "gold_ratio": null,
+   "age_h": 7.6
+  },
+  {
+   "url": "https://x.com/refinedelement/status/2124648479184011281",
+   "author": "refinedelement",
+   "author_followers": null,
+   "posted_at": "2026-11-22T23:37:26Z",
+   "views": 191,
+   "likes": 4,
+   "replies": 4,
+   "reposts": 1,
+   "text": "I can go from an idea at a restaurant to a working prototype on my dev machine in minutes, using only my phone.\n\nHermes orchestrates. Claude Code builds. A shared Markdown vault preserves context.\n\nI wrote up how it works and how to build your own.\n\nhttps://refinedelement.com/Blog/From-Idea-to-Prototype-How-I-Built-a-Cross-Platform-AI-Agent-Workflow",
+   "matched": "devlog \"how it works\" / \"coding on my phone\"",
+   "gold_ratio": null,
+   "age_h": 16.3
+  },
+  {
+   "url": "https://x.com/David_J_Miller/status/2124491645487866138",
+   "author": "David_J_Miller",
+   "author_followers": null,
+   "posted_at": "2026-11-22T13:14:14Z",
+   "views": 86,
+   "likes": 1,
+   "replies": 1,
+   "reposts": 0,
+   "text": "Hit two annoyances coding from my phone on a flight to FL: failed Cursor turns dropping handoff context, and black-on-black mobile error timestamps.\n\nUsed @t3dotcodes to open PRs for both last night. Woke up to both merged.\n\nhttps://github.com/pingdotgg/t3code/pull/40670\nhttps://github.com/pingdotgg/t3code/pull/40676",
+   "matched": "\"coding on my phone\"",
+   "gold_ratio": null,
+   "age_h": 26.6
+  },
+  {
+   "url": "https://x.com/Lockhead/status/2124346957212659827",
+   "author": "Lockhead",
+   "author_followers": null,
+   "posted_at": "2026-11-22T03:39:17Z",
+   "views": 150,
+   "likes": 4,
+   "replies": 2,
+   "reposts": 0,
+   "text": "Coding from my phone with Kiro on iOS sounded like a gimmick until I shipped a real fix from a train. The form factor changes what counts as \"at my desk.\"",
+   "matched": "\"coding from my iPhone\"",
+   "gold_ratio": null,
+   "age_h": 36.2
+  },
+  {
+   "url": "https://x.com/wilzerjb/status/2124143683759124744",
+   "author": "wilzerjb",
+   "author_followers": null,
+   "posted_at": "2026-11-21T14:11:33Z",
+   "views": 36,
+   "likes": 0,
+   "replies": 1,
+   "reposts": 0,
+   "text": "Game I'm working on with Claude Code x Codex for Assets.\n\nI tried a 3D map before, but it was lacking detail, so instead I had Codex create a concept art and had Claude turn that concept into the actual map.",
+   "matched": "\"built with Claude Code\" OR \"built with Codex\" game",
+   "gold_ratio": null,
+   "age_h": 49.7
+  },
+  {
+   "url": "https://x.com/nehulbuilds/status/2124110598913007833",
+   "author": "nehulbuilds",
+   "author_followers": null,
+   "posted_at": "2026-11-21T12:00:05Z",
+   "views": 6823,
+   "likes": 10,
+   "replies": 6,
+   "reposts": 1,
+   "text": "Claude Opus 5.5 built this\n\nBuilt an entire fantasy world with boss fights, animations, and music.\n\nZero external assets. All code.",
+   "matched": "indie developer building a game with Claude Code",
+   "gold_ratio": null,
+   "age_h": 51.9
+  },
+  {
+   "url": "https://x.com/MakTwenty/status/2124617874446987462",
+   "author": "MakTwenty",
+   "author_followers": null,
+   "posted_at": "2026-11-22T21:35:49Z",
+   "views": 398,
+   "likes": 7,
+   "replies": 11,
+   "reposts": 1,
+   "text": "https://openedBot.app is now 100% open source, and I'm closing the hosted service.\n\n  Over the past months I built OpenedBot: a console to run and supervise AI agents on your own machines. The idea was simple: your agent runs at home or on your server, and it opens a single outbound connection to the console. No inbound port, no data leaving your machine without you knowing.",
+   "matched": "open source AI agents",
+   "gold_ratio": null,
+   "age_h": 18.3
+  },
+  {
+   "url": "https://x.com/aigamelab_jp/status/2124045054021161008",
+   "author": "aigamelab_jp",
+   "author_followers": null,
+   "posted_at": "2026-11-21T07:39:38Z",
+   "views": 45,
+   "likes": 0,
+   "replies": 0,
+   "reposts": 0,
+   "text": "ゲームのバランスを、戦闘を1万回自動で戦わせて調べてみた。\n\n敵のHPを100から140に上げると、勝率は98.3%→69.6%へ。\n\n同じ条件を100回だけ試すと、勝率は58〜74%の間でブレる。\n1万回なら、68.2〜69.7%に収まる。\n\n▼コードと数字のまとめ（未確認事項も有）\nhttps://dappsgamelab.com/how-to-make/game-balance-sim/?utm_source=x&utm_medium=social&utm_campaign=w4_1117&utm_content=1120b_balance\n\n#ゲーム開発",
+   "matched": "\"balance sim\"",
+   "gold_ratio": null,
+   "age_h": 56.2
+  },
+  {
+   "url": "https://x.com/serxzsz/status/2124672852104294822",
+   "author": "serxzsz",
+   "author_followers": null,
+   "posted_at": "2026-11-23T01:14:17Z",
+   "views": 364,
+   "likes": 1,
+   "replies": 1,
+   "reposts": 0,
+   "text": "does the ai playtest its own builds or do you still play every one",
+   "matched": "\"AI playtesting\"",
+   "gold_ratio": null,
+   "age_h": 14.6
+  },
+  {
+   "url": "https://x.com/TianQiu9390/status/2124364808216826215",
+   "author": "TianQiu9390",
+   "author_followers": null,
+   "posted_at": "2026-11-22T04:50:13Z",
+   "views": 21,
+   "likes": 3,
+   "replies": 1,
+   "reposts": 0,
+   "text": "Letting coding agents actually play and test the games they build is a big step beyond simply generating code.\n\nThe automated playtesting part is especially interesting. It could make the whole game development workflow much more efficient!",
+   "matched": "\"automated playtesting\"",
+   "gold_ratio": null,
+   "age_h": 35.0
+  },
+  {
+   "url": "https://x.com/AladdinKayaa/status/2124893287513550908",
+   "author": "AladdinKayaa",
+   "author_followers": null,
+   "posted_at": "2026-11-23T15:50:13Z",
+   "views": 6,
+   "likes": 0,
+   "replies": 0,
+   "reposts": 0,
+   "text": "I’m starting to track reliability issues in open-source AI agent projects using public GitHub data.\n\nNot just how many bugs get reported, but which problems keep coming back and how long they take to resolve.\n\nI’ll share the data, code, and findings as I go.",
+   "matched": "\"AI agents\" automation \"open source\"",
+   "gold_ratio": null,
+   "age_h": 0.0
+  },
+  {
+   "url": "https://x.com/PAJUSHA/status/2124887096578220039",
+   "author": "PAJUSHA",
+   "author_followers": null,
+   "posted_at": "2026-11-23T15:25:36Z",
+   "views": 5,
+   "likes": 0,
+   "replies": 0,
+   "reposts": 0,
+   "text": "Hi! I am building a one-person business around AI, data, and automation. Somehow, that turned into building my own Command Center and managing a team of AI agents.\n\nMeanwhile, I'm also trying to learn marketing, grow on X, and document the chaos. Apparently, building the business wasn't complicated enough. :-D",
+   "matched": "\"AI agents\" automation",
+   "gold_ratio": null,
+   "age_h": 0.5
+  },
+  {
+   "url": "https://x.com/CJ__McG/status/2124818281684947106",
+   "author": "CJ__McG",
+   "author_followers": null,
+   "posted_at": "2026-11-23T10:52:10Z",
+   "views": 36,
+   "likes": 0,
+   "replies": 0,
+   "reposts": 0,
+   "text": "Ran a 3-week test last month using GrokBot to manage this X account.\n\nIt was supposed to be a month, but the agent just kept defaulting back to \"AI reply guy\" no matter how well I tried to guardrail post quality.\n\nHere are the findings:\n\n1) It makes shit up.... Constantly. Despite being told my beliefs/affiliations it would post complete opposite \"opinions\".",
+   "matched": "\"how do you automate\" X posting",
+   "gold_ratio": null,
+   "age_h": 5.0
+  },
+  {
+   "url": "https://x.com/levelsio/status/2124865061936349526",
+   "author": "levelsio",
+   "author_followers": null,
+   "posted_at": "2026-11-23T13:58:03Z",
+   "views": 186,
+   "likes": 1,
+   "replies": 2,
+   "reposts": 0,
+   "text": "What's horrible is the endless AI reply spamming under every single post which is killing this platform",
+   "matched": "from:levelsio",
+   "gold_ratio": null,
+   "age_h": 1.9
+  },
+  {
+   "url": "https://x.com/levelsio/status/2124864662487572780",
+   "author": "levelsio",
+   "author_followers": null,
+   "posted_at": "2026-11-23T13:56:28Z",
+   "views": 170,
+   "likes": 1,
+   "replies": 0,
+   "reposts": 0,
+   "text": "I'm not changing my mind about my initiative because it's working exceptionally well with a false positive rate of 0.1% and a fast appeal and removal process",
+   "matched": "from:levelsio",
+   "gold_ratio": null,
+   "age_h": 1.9
+  }
+ ],
+ "mentions": [],
+ "accounts": [
+  {
+   "handle": "levelsio",
+   "followers": null,
+   "bio": "💸https://t.co/sQ0aiU7v02\n📸https://t.co/lAyoqmSBRX $68K/m\n🎮https://t.co/tF49atJ396 $44K/m\n🏡https://t.co/1oqUgfD6CZ $23K/m\n👙@X $20K/m\n🌍https://t.co/UXK5AFqCaQ $7K/m\n🏩https://t.co/4p4dzTDVN6 $3K/m\n💾@pieter\n📝https://t.co/8VnHmB3uah",
+   "recent_post_url": "https://x.com/levelsio/status/2124865061936349526"
+  },
+  {
+   "handle": "MShahbazManzoor",
+   "followers": null,
+   "bio": "Building:\nhttps://t.co/5oGcai65A6",
+   "recent_post_url": "https://x.com/MShahbazManzoor/status/2124879972116685011"
+  },
+  {
+   "handle": "sageuxpro",
+   "followers": null,
+   "bio": "Product Designer\nBuilding @holokraft.in",
+   "recent_post_url": "https://x.com/sageuxpro/status/2124874649322627430"
+  },
+  {
+   "handle": "jeffbruchado",
+   "followers": null,
+   "bio": "Software engineer building products with AI. Sharing code, decisions, and real lessons from shipping products.\n🕹️ https://t.co/l6xhHo7zJi\n⏱️ My hours $7k/m",
+   "recent_post_url": "https://x.com/jeffbruchado/status/2124857784365936677"
+  },
+  {
+   "handle": "serxzsz",
+   "followers": null,
+   "bio": "14 yrs dev. 20+ projects shipped. 2 exits.\nCurrently building:\nhttps://t.co/gVUrRsUhiE ~3k MRR",
+   "recent_post_url": "https://x.com/serxzsz/status/2124672852104294822"
+  },
+  {
+   "handle": "brugiordano_x",
+   "followers": null,
+   "bio": "gtm x agents x automation\nPrev @tinybird and @bdeo_app. Co-founded @twovault_",
+   "recent_post_url": "https://x.com/brugiordano_x/status/2124779906978492656"
+  },
+  {
+   "handle": "MakTwenty",
+   "followers": null,
+   "bio": "French Developper IA Engineer \nAdept of #Apple\n#EXDeveloperOnFintech",
+   "recent_post_url": "https://x.com/MakTwenty/status/2124617874446987462"
+  },
+  {
+   "handle": "nehulbuilds",
+   "followers": null,
+   "bio": "Data Scientist @HPE | Building with LLMs - RAG, agents, evals. Sharing experiments, failures & lessons",
+   "recent_post_url": "https://x.com/nehulbuilds/status/2124110598913007833"
+  },
+  {
+   "handle": "Calebsenm",
+   "followers": null,
+   "bio": "Engineering student. Programming things for fun.",
+   "recent_post_url": "https://x.com/Calebsenm/status/2124887669113307386"
+  },
+  {
+   "handle": "ssuunnyy",
+   "followers": null,
+   "bio": "AI experiments, solopreneurship, and raw daily logs.\nNo filter, no polish. Just learning & shipping in public.\n🛠️Building a portfolio of OpenSourceMicroSaaS.",
+   "recent_post_url": "https://x.com/ssuunnyy/status/2124858776327279071"
+  }
+ ],
+ "trends": [
+  {
+   "topic": "games built with Claude Code or Codex",
+   "example_urls": [
+    "https://x.com/sageuxpro/status/2124874649322627430",
+    "https://x.com/wilzerjb/status/2124143683759124744",
+    "https://x.com/nehulbuilds/status/2124110598913007833"
+   ]
+  },
+  {
+   "topic": "AI playtesting and balance sims",
+   "example_urls": [
+    "https://x.com/serxzsz/status/2124672852104294822",
+    "https://x.com/TianQiu9390/status/2124364808216826215",
+    "https://x.com/aigamelab_jp/status/2124045054021161008"
+   ]
+  },
+  {
+   "topic": "coding from a phone",
+   "example_urls": [
+    "https://x.com/David_J_Miller/status/2124491645487866138",
+    "https://x.com/Lockhead/status/2124346957212659827",
+    "https://x.com/refinedelement/status/2124648479184011281"
+   ]
+  },
+  {
+   "topic": "agents posting to X",
+   "example_urls": [
+    "https://x.com/MShahbazManzoor/status/2124879972116685011",
+    "https://x.com/CJ__McG/status/2124818281684947106"
+   ]
+  },
+  {
+   "topic": "open-source AI agent side projects",
+   "example_urls": [
+    "https://x.com/MakTwenty/status/2124617874446987462",
+    "https://x.com/Calebsenm/status/2124887669113307386",
+    "https://x.com/AladdinKayaa/status/2124893287513550908"
+   ]
+  }
+ ]
+}
