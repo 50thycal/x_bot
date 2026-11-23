@@ -61,6 +61,23 @@ Notes:
 - Pause the three Grok automations (grok.com → Settings → Automations) so they don't run in parallel.
 - Daylight saving: the crons are fixed UTC, so in summer they run one hour later local time.
 
+## 3c. Grok collects, Claude writes (active)
+
+Two halves. No Claude token or GitHub secret is needed for the Claude half.
+
+| Piece | When (UTC) | What |
+|---|---|---|
+| `daily` workflow (Grok) | 13:17 (GitHub often starts it hours late) | Grok searches X (≤ 12 searches) and commits raw data to `data/x/DATE.json`. Runs every `COLLECT_EVERY_DAYS` (default 2) days to save the Grok Plus allowance. |
+| Scheduled Claude Code session "daily" | ~15:xx | Claude reads `brain/`, the newest data, the ledger and recent queues, then opens "Engagement queue — DATE" and the "Drafts for DATE" PR. If collection is due and the data isn't there yet, it dispatches the `daily` workflow and waits. Instructions: `agents/claude/daily.md`. |
+| Scheduled Claude Code session "weekly" | Sunday evening US Central | Claude analyses the ledger and opens "Weekly review — DATE" (+ a playbook PR when the evidence supports it). Instructions: `agents/claude/weekly.md`. |
+
+The scheduled sessions run on your Claude plan (claude.ai/code → scheduled tasks), not in GitHub Actions.
+Each is a fresh session with the repo attached; its prompt just says "clone/read the repo and follow `agents/claude/daily.md`".
+Claude has no `gh` CLI there: it uses the GitHub tools, can only push to its own session branch, and can't merge.
+That's fine: the publisher only cares that drafts arrive on `main` through a merged PR.
+
+Setup (once): in the Claude Code session that built this, ask it to create the two scheduled tasks. Nothing to do on GitHub.
+
 ## 4. Dry run → first live post
 
 1. **Actions → publish → Run workflow.** Open the run's Summary: it should say `DRY RUN` and either `nothing due` or `WOULD POST …`.
