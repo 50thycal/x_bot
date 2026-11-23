@@ -67,7 +67,7 @@ Two halves. No Claude token or GitHub secret is needed for the Claude half.
 
 | Piece | When (UTC) | What |
 |---|---|---|
-| `daily` workflow (Grok) | 13:17 (GitHub often starts it hours late) | Grok searches X (≤ 12 searches) and commits raw data to `data/x/DATE.json`. Runs every `COLLECT_EVERY_DAYS` (default 2) days to save the Grok Plus allowance. |
+| `daily` workflow (Grok) | 13:17 (GitHub often starts it hours late) | Grok searches X (≤ 12 searches) and commits raw data to `data/x/DATE.json`. Runs every `COLLECT_EVERY_DAYS` (default 2) days to save the Grok Plus allowance. Also stops when the last 7 days of collects cost ≥ `GROK_WEEKLY_BUDGET_USD` (default $4; each data file records its `cost_usd`). |
 | Scheduled Claude Code session "daily" | ~15:xx | Claude reads `brain/`, the newest data, the ledger and recent queues, then opens "Engagement queue — DATE" and the "Drafts for DATE" PR. If collection is due and the data isn't there yet, it dispatches the `daily` workflow and waits. Instructions: `agents/claude/daily.md`. |
 | Scheduled Claude Code session "weekly" | Sunday evening US Central | Claude analyses the ledger and opens "Weekly review — DATE" (+ a playbook PR when the evidence supports it). Instructions: `agents/claude/weekly.md`. |
 

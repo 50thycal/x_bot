@@ -32,6 +32,7 @@ jobs:
           XAI_SCOUT_MODEL: ${{ vars.XAI_SCOUT_MODEL }}
           XAI_SCOUT_MAX_TURNS: ${{ vars.XAI_SCOUT_MAX_TURNS }}
           COLLECT_EVERY_DAYS: ${{ vars.COLLECT_EVERY_DAYS }}
+          GROK_WEEKLY_BUDGET_USD: ${{ vars.GROK_WEEKLY_BUDGET_USD }}
         run: python -m agents.collect
       - name: Commit data
         run: |

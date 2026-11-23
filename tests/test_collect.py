@@ -33,6 +33,18 @@ class CollectTest(unittest.TestCase):
         self.assertEqual([x["handle"] for x in out["accounts"]], ["good_one"])
         self.assertEqual(len(out["trends"]), 1)
 
+    def test_skips_when_weekly_budget_spent(self):
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d)
+            (p / "2026-11-19.json").write_text('{"cost_usd": 2.5}')
+            (p / "2026-11-21.json").write_text('{"cost_usd": 2.0}')
+            (p / "2026-11-01.json").write_text('{"cost_usd": 99}')   # older than 7 days: ignored
+            with mock.patch.object(collect, "DATA_DIR", p), mock.patch.object(collect.xai, "respond") as r, \
+                 mock.patch.dict("os.environ", {"COLLECT_EVERY_DAYS": "1", "GROK_WEEKLY_BUDGET_USD": "4"}):
+                self.assertEqual(collect.week_spend(NOW), (4.5, 2))
+                self.assertEqual(collect.collect(NOW, False), 0)
+                r.assert_not_called()
+
     def test_skips_when_recent_data_exists(self):
         with tempfile.TemporaryDirectory() as d:
             p = Path(d)
