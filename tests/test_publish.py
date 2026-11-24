@@ -173,3 +173,15 @@ class MediaTest(unittest.TestCase):
         self.assertEqual(mid, "42")
         self.assertEqual(parts, [("/media/upload/42/append", 0, xbot.CHUNK_BYTES), ("/media/upload/42/append", 1, 5)])
         self.assertEqual([c[1] for c in calls], ["/media/upload/initialize", "/media/upload/42/finalize", "/media/upload"])
+
+
+class PersonaTest(unittest.TestCase):
+    def test_bot_posts_need_the_label(self):
+        with tempfile.TemporaryDirectory() as t:
+            tmp = Path(t)
+            ok = make_draft(tmp, "b1", "2026-11-22T14:30:00Z", body="bot: status report. all fine.", persona="bot")
+            self.assertEqual(xbot.validate_draft(ok, CFG), [])
+            bad = make_draft(tmp, "b2", "2026-11-22T14:30:00Z", body="status report. all fine.", persona="bot")
+            self.assertTrue(any("must start with 'bot: '" in e for e in xbot.validate_draft(bad, CFG)))
+            odd = make_draft(tmp, "b3", "2026-11-22T14:30:00Z", body="hi", persona="ceo")
+            self.assertTrue(any("persona must be" in e for e in xbot.validate_draft(odd, CFG)))

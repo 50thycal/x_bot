@@ -29,3 +29,6 @@
 3. "rate my AI psychosis" (with an absurdly ambitious prompt asking Claude to turn an app idea into an App Store-ready product)
 
 What these share: understated, slightly ridiculous, and rooted in something I actually did.
+
+## The bot persona (about 1 post a week)
+A labeled `bot:` voice with its own personality, answered by me. Full rules in `persona.md`. Everything above (no emojis, hashtags, em dashes) still applies to both voices.
