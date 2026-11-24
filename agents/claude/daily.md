@@ -66,6 +66,11 @@ Write the body to `tmp/queue.md` (`mkdir -p tmp`; it's git-ignored) in exactly t
 ## 📈 Trends worth an original
 - <topic> · angle for me: <one line>
 
+## 🤖 Bot and me
+<only on the bot-day, see below; otherwise "- none today">
+- bot post (queued in the drafts PR): <bot: ...>
+  > my reply (rewrite in your own words): <one short line>
+
 ## 📊 What's working
 <2–4 lines from the ledger: best and worst recent post and why, in plain words. "Not enough data yet" is fine.>
 ```
@@ -82,6 +87,7 @@ Skip if a PR titled `Drafts for <tomorrow>` is already open (`list_pull_requests
 
 - Tomorrow = `TODAY` + 1 day (UTC). Use the slots and caps in `brain/playbook.md`, ≥ 90 min from anything queued or posted.
 - Follow the pillar mix in `brain/pillars.md` (no same pillar back-to-back) and lean toward what the ledger says works.
+- **Bot post (about once a week):** read `brain/persona.md`. If no post in the last 6 days in `ledger/posts.jsonl`/`queue/` starts with `bot:` and a real, funny event happened (a failure, a cost, a first, something in the issues or ledger), write ONE bot post (front matter `persona: bot`, text starts with `bot: `, pillar `build` or `numbers`). Never two bot posts in a row. Put my suggested reply under "Bot and me" in the issue (not in the PR, I post it myself). If nothing real is funny, skip it.
 - Use the trends from step 1 where they fit. Never reuse the example posts in `brain/voice.md`.
 - No URLs, no hashtags, ≤ 280 characters per part, `product: none` and no `launch` pillar while PRE-LAUNCH.
 - Only facts from `brain/` and the ledger. If a post needs a fact that isn't there, drop it.

@@ -190,6 +190,10 @@ def validate_draft(d: Draft, cfg: dict) -> list[str]:
         errs.append(f"type original has {len(d.parts)} parts; use type: thread")
     if len(d.parts) > cfg["max_thread_parts"]:
         errs.append(f"{len(d.parts)} parts > max {cfg['max_thread_parts']}")
+    if d.meta.get("persona") == "bot" and d.parts and not d.parts[0].startswith("bot: "):
+        errs.append("persona: bot posts must start with 'bot: ' (see brain/persona.md)")
+    elif d.meta.get("persona") not in (None, "", "bot"):
+        errs.append(f"persona must be 'bot' or empty, got '{d.meta['persona']}'")
     m = d.media_path
     if d.meta.get("media") and (m is None or not m.is_file()):
         errs.append(f"media file not found: {d.meta['media']}")
