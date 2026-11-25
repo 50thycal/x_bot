@@ -1,0 +1,432 @@
+{
+ "date": "2026-11-25",
+ "collected_at": "2026-11-25T22:28:44Z",
+ "usage": "model grok-4.7 · tokens in/out 62617/18859 · tools x_search_calls=12, x_posts_fetched=75 · cost $0.5673",
+ "cost_usd": 0.567308,
+ "posts": [
+  {
+   "url": "https://x.com/namrun23/status/2125717215013941478",
+   "author": "namrun23",
+   "author_followers": null,
+   "posted_at": "2026-11-25T22:24:12Z",
+   "views": 5,
+   "likes": 0,
+   "replies": 0,
+   "reposts": 0,
+   "text": "so coming back to my question about project handoffs, I finally think I found a way:\n\ncontext is I need to hand over my prototype to a dev team\n\n> the project involves building a UI and processing PLY files, i haven't included an API key yet since this is just a prototype\n\n> i'm basically running everything out of claude code - in other words, CLAUDE CODE is my BACKEND",
+   "matched": "\"Claude Code\" \"build in public\"",
+   "gold_ratio": null,
+   "age_h": 0.1
+  },
+  {
+   "url": "https://x.com/dev_coma/status/2125716928970760379",
+   "author": "dev_coma",
+   "author_followers": null,
+   "posted_at": "2026-11-25T22:23:04Z",
+   "views": 4,
+   "likes": 0,
+   "replies": 0,
+   "reposts": 0,
+   "text": "9 at once?? I'd lose track of which one broke what lol. Building with Claude Code at night here, connected🤝🏻",
+   "matched": "\"Claude Code\" \"build in public\"",
+   "gold_ratio": null,
+   "age_h": 0.1
+  },
+  {
+   "url": "https://x.com/JustPratiyush/status/2125716398693564589",
+   "author": "JustPratiyush",
+   "author_followers": null,
+   "posted_at": "2026-11-25T22:20:58Z",
+   "views": 12,
+   "likes": 0,
+   "replies": 1,
+   "reposts": 0,
+   "text": "In the last 24 hours, I’ve:\n\n1. Cloned my voice and analyzed its pitch and depth.\n2. Made a YouTube video with it on RSI.\n3. Built a Matrix-inspired Claude Code theme.\n4. Added skills and mods to Claude.\n5. Ported a web app to native macOS.\n\nI’m beginning to see the AI oblivion.",
+   "matched": "\"Claude Code\" \"build in public\"",
+   "gold_ratio": null,
+   "age_h": 0.1
+  },
+  {
+   "url": "https://x.com/dino_imx/status/2125715801298862530",
+   "author": "dino_imx",
+   "author_followers": null,
+   "posted_at": "2026-11-25T22:18:35Z",
+   "views": 9,
+   "likes": 0,
+   "replies": 0,
+   "reposts": 0,
+   "text": "I'm building Persona Gauntlet: vision-driven accessibility testing with Kane CLI & Claude Code this week for the KaneCLI Online Hackathon\n\nKane CLI checks it my code in a real browser, so the agent sees its own failures.\n\nPosting progress here all week. \n\nTested with @kane_cli from @testmuai.\n#KaneCLIHackathon #KaneCLI",
+   "matched": "\"Claude Code\" \"build in public\"",
+   "gold_ratio": null,
+   "age_h": 0.2
+  },
+  {
+   "url": "https://x.com/jawadPROdctDsgn/status/2125702352237994149",
+   "author": "jawadPROdctDsgn",
+   "author_followers": null,
+   "posted_at": "2026-11-25T21:25:09Z",
+   "views": 36,
+   "likes": 4,
+   "replies": 0,
+   "reposts": 1,
+   "text": "01/100  of the Claude Challenge \n\nI built and shipped Bengaluru Auto Rush!\n\nAn 8-bit arcade game inspired by Bengaluru, built with Claude Code.🚀\n\nPlay here: [https://bengaluru-auto-rush.vercel.app/ ]\n\n#100DaysOfBuild #BuildInPublic \n\nMore experiments coming! Thanks to\n@shaihq_ @rajatpatel2113",
+   "matched": "\"built with Claude Code\" OR \"built with Codex\" game",
+   "gold_ratio": null,
+   "age_h": 1.1
+  },
+  {
+   "url": "https://x.com/Andrew_Blumson/status/2125714531636695498",
+   "author": "Andrew_Blumson",
+   "author_followers": null,
+   "posted_at": "2026-11-25T22:13:32Z",
+   "views": 13,
+   "likes": 1,
+   "replies": 0,
+   "reposts": 0,
+   "text": "@jsnnsa any chance you can check my account and make sure I am not doing anything wrong. I have added Codex and Claude to the builds, mainly for Blender but a few other things, and don't fully understand what I can and can't do. Both are updating Savi in history in the game itself.  And I've told them both not to speak to Savi directly. Claude seems to be sticking to that but I think Codex sometim",
+   "matched": "Codex \"vibe coding\" shipped",
+   "gold_ratio": null,
+   "age_h": 0.3
+  },
+  {
+   "url": "https://x.com/eddiejaoude/status/2125662053717168619",
+   "author": "eddiejaoude",
+   "author_followers": null,
+   "posted_at": "2026-11-25T18:45:01Z",
+   "views": 832,
+   "likes": 13,
+   "replies": 11,
+   "reposts": 0,
+   "text": "With my spare tokens, I made a game for Builders 🎮\n\nShip It! Indie Hacker Rush 🚀\n\nLead your squad of AI agents through a code editor and fight the things that actually stop us shipping:\n\n🐛 Bugs (they come in swarms)\n🎫 Feature requests (\"Can it do my taxes?\")\n💡 Shiny new ideas (\"Rewrite it in Rust\")\n\nRun through green terminals to recruit more agents, dodge the red ones (burnout, meetings, tech deb",
+   "matched": "\"indie hacker\" \"side project\"",
+   "gold_ratio": null,
+   "age_h": 3.7
+  },
+  {
+   "url": "https://x.com/ericrbuilds/status/2125695475601068253",
+   "author": "ericrbuilds",
+   "author_followers": null,
+   "posted_at": "2026-11-25T20:57:49Z",
+   "views": 119,
+   "likes": 3,
+   "replies": 3,
+   "reposts": 0,
+   "text": "Day 44 of building in public as a 21 y/o indie hacker from Barcelona.\n\nNew record today:\n- 32 sales by 10 pm, €140.47 (yesterday: 29)\n- 75 min without a single one, then 3 in half an hour\n\nMy 30-day challenge is done. Goal: €1,000 in sales. Got €1,546.\n\nWhat's next? #buildinpublic",
+   "matched": "\"indie hacker\" \"side project\"",
+   "gold_ratio": null,
+   "age_h": 1.5
+  },
+  {
+   "url": "https://x.com/ericrbuilds/status/2125636704103235769",
+   "author": "ericrbuilds",
+   "author_followers": null,
+   "posted_at": "2026-11-25T17:04:17Z",
+   "views": 63,
+   "likes": 5,
+   "replies": 8,
+   "reposts": 0,
+   "text": "Day 43 of building in public as a 21 y/o indie hacker from Barcelona.\n\nYesterday was my best day by number of sales:\n- 29 sales, €119.71\n- 5 of them between 10 and 11 pm\n- the day before: 16\n\nSame product. Same price. I only added things.\n\nWhen do you sell most? #buildinpublic",
+   "matched": "\"indie hacker\" \"side project\"",
+   "gold_ratio": null,
+   "age_h": 5.4
+  },
+  {
+   "url": "https://x.com/rashem48/status/2125707222357524737",
+   "author": "rashem48",
+   "author_followers": null,
+   "posted_at": "2026-11-25T21:44:30Z",
+   "views": 329,
+   "likes": 12,
+   "replies": 7,
+   "reposts": 1,
+   "text": "Day 35 of Building in Public 🚀\n\nBest sales day for Scenes so far 🥹🤩\n\n4 more sales since yesterday’s post 🚀\n\nReally happy to see the momentum continuing. Still feels a bit unreal that people are paying for something I built 🫶\n\nAnyway, here’s what I worked on today:\n\n💻 Scenes (Mac App)\n\n✅ Published a couple of high-quality blog posts to improve the website’s organic visibility 📈",
+   "matched": "\"build in public\"",
+   "gold_ratio": null,
+   "age_h": 0.7
+  },
+  {
+   "url": "https://x.com/croffasia/status/2125718220241785000",
+   "author": "croffasia",
+   "author_followers": null,
+   "posted_at": "2026-11-25T22:28:12Z",
+   "views": 2,
+   "likes": 0,
+   "replies": 0,
+   "reposts": 0,
+   "text": "Officially: an open-source Linear alternative is #1 on Peerlist Launchpad this week.\n\n103 upvotes, 106 people backing it. Built solo, self-hosted, AI agents work as teammates via MCP.\n\nVoting closes Sunday. If you've got 10 seconds, help me hold the spot 👇",
+   "matched": "\"AI agents\" automation \"open source\"",
+   "gold_ratio": null,
+   "age_h": 0.0
+  },
+  {
+   "url": "https://x.com/chinmayshah899/status/2125718219604553961",
+   "author": "chinmayshah899",
+   "author_followers": null,
+   "posted_at": "2026-11-25T22:28:12Z",
+   "views": 2,
+   "likes": 0,
+   "replies": 0,
+   "reposts": 0,
+   "text": "Building a audio visual collaboration layer to work with AI - https://usebicycle.app\nChat/ long thread scrolling are messy and we need to truly collaborate with AI agents to push the frontier!",
+   "matched": "\"AI agents\" automation \"open source\"",
+   "gold_ratio": null,
+   "age_h": 0.0
+  },
+  {
+   "url": "https://x.com/paulosteinberg/status/2125716706261631046",
+   "author": "paulosteinberg",
+   "author_followers": null,
+   "posted_at": "2026-11-25T22:22:11Z",
+   "views": 3,
+   "likes": 0,
+   "replies": 0,
+   "reposts": 0,
+   "text": "yo, solo dev from montreal here. building a macro tracker that counts your workouts, mostly with AI agents, first version waiting on apple. lets connect",
+   "matched": "\"AI agents\" automation \"open source\"",
+   "gold_ratio": null,
+   "age_h": 0.1
+  },
+  {
+   "url": "https://x.com/metatransformr/status/2125632940625510661",
+   "author": "metatransformr",
+   "author_followers": null,
+   "posted_at": "2026-11-25T16:49:20Z",
+   "views": 383,
+   "likes": 11,
+   "replies": 3,
+   "reposts": 0,
+   "text": "you know it trips me out so hard to think of the dinky little games I was making this time last year. I didn’t even get into 3d until april. I was still coding by hand 3 years ago. \n\nit’s a really exciting time but it’s also a huge mindfuck. i would call this a singularity, since at any given time point we look forward with amazement and look backwards with astonishment.\n\nI’m really excited for RS",
+   "matched": "\"playtesting bot\" OR \"automated playtesting\" OR \"balance sim\"",
+   "gold_ratio": null,
+   "age_h": 5.7
+  },
+  {
+   "url": "https://x.com/timsekamov/status/2125566280413384707",
+   "author": "timsekamov",
+   "author_followers": null,
+   "posted_at": "2026-11-25T12:24:27Z",
+   "views": 46,
+   "likes": 0,
+   "replies": 0,
+   "reposts": 0,
+   "text": "02/ HOW I BUILT IT\n– all concepts through Q&A sessions with ChatGPT\n– all vibecoded with Claude (Sonnet)\n– visual parts inspired by Pinterest\n– design assets made with ready assets\n– First 8h of dev: ~90% of the game worked fine, but then I started finding bugs I couldn’t fix quickly, coz every new vibecoding round started ruining previous updates\nSo the second 8h went into bug fixing, lol",
+   "matched": "\"how I built\" game OR tool OR agent",
+   "gold_ratio": null,
+   "age_h": 10.1
+  },
+  {
+   "url": "https://x.com/sharyph_/status/2125560130842562766",
+   "author": "sharyph_",
+   "author_followers": null,
+   "posted_at": "2026-11-25T12:00:00Z",
+   "views": 799,
+   "likes": 5,
+   "replies": 3,
+   "reposts": 1,
+   "text": "An SEO audit is the same checklist every time: title length, H1 count, alt text, schema, speed.\n\nEvery checklist can be automated.\n\nHere's how I built one that audits 24 pages, benchmarks your competition, and tells you what to fix first.\n\nhttps://newsletter.thedigitalcreator.co/p/the-seo-audit-agent-score-any-website",
+   "matched": "\"how I built\" game OR tool OR agent",
+   "gold_ratio": null,
+   "age_h": 10.5
+  },
+  {
+   "url": "https://x.com/drsajjadmahmood/status/2125694279578501369",
+   "author": "drsajjadmahmood",
+   "author_followers": null,
+   "posted_at": "2026-11-25T20:53:04Z",
+   "views": 4,
+   "likes": 0,
+   "replies": 0,
+   "reposts": 0,
+   "text": "Loops didn't die. They got eaten.\n\nClaude Code and Codex shipped /goal. The loop became a feature, not a discipline.\n\nI only reach for /goal when an agent fails 2-3 times. That's all the \"loop engineering\" my stack needs.",
+   "matched": "Codex \"vibe coding\" shipped",
+   "gold_ratio": null,
+   "age_h": 1.6
+  },
+  {
+   "url": "https://x.com/yasir_builds/status/2125587035302097368",
+   "author": "yasir_builds",
+   "author_followers": null,
+   "posted_at": "2026-11-25T13:46:55Z",
+   "views": 3,
+   "likes": 0,
+   "replies": 0,
+   "reposts": 0,
+   "text": "coding from my phone now, hooked 👀",
+   "matched": "\"coding on my phone\" OR \"coding from my iPhone\"",
+   "gold_ratio": null,
+   "age_h": 8.7
+  },
+  {
+   "url": "https://x.com/Eli_Greenfeld/status/2125367677346541721",
+   "author": "Eli_Greenfeld",
+   "author_followers": null,
+   "posted_at": "2026-11-24T23:15:16Z",
+   "views": 69,
+   "likes": 3,
+   "replies": 0,
+   "reposts": 0,
+   "text": "Vibe coding on my phone is how I learned autocorrect has strong opinions about my database schema 😅",
+   "matched": "\"coding on my phone\" OR \"coding from my iPhone\"",
+   "gold_ratio": null,
+   "age_h": 23.2
+  },
+  {
+   "url": "https://x.com/chiefkittenme/status/2125325831153025471",
+   "author": "chiefkittenme",
+   "author_followers": null,
+   "posted_at": "2026-11-24T20:28:59Z",
+   "views": 1487,
+   "likes": 39,
+   "replies": 7,
+   "reposts": 1,
+   "text": "Vibecoding is a gift to mothers.\n\nWhen I had my first baby in 2023, I wished I could keep building while breastfeeding (I couldn’t)\n\nBy the time my second was born in 2025, I was breastfeeding and vibe coding from my phone.\n\nWhat a time to be a mom and a builder",
+   "matched": "\"coding on my phone\" OR \"coding from my iPhone\"",
+   "gold_ratio": null,
+   "age_h": 26.0
+  },
+  {
+   "url": "https://x.com/dhh/status/2125627613632938384",
+   "author": "dhh",
+   "author_followers": null,
+   "posted_at": "2026-11-25T16:28:09Z",
+   "views": 116431,
+   "likes": 2966,
+   "replies": 95,
+   "reposts": 39,
+   "text": "Who's a good agent??? YOU'RE A GOOD AGENT, NEON!!",
+   "matched": "from:dhh",
+   "gold_ratio": null,
+   "age_h": 6.0
+  },
+  {
+   "url": "https://x.com/levelsio/status/2125628726067216519",
+   "author": "levelsio",
+   "author_followers": null,
+   "posted_at": "2026-11-25T16:32:35Z",
+   "views": 7636,
+   "likes": 57,
+   "replies": 3,
+   "reposts": 0,
+   "text": "Yep, https://blockedforaireply.com",
+   "matched": "from:levelsio",
+   "gold_ratio": null,
+   "age_h": 5.9
+  },
+  {
+   "url": "https://x.com/levelsio/status/2125700827914322159",
+   "author": "levelsio",
+   "author_followers": null,
+   "posted_at": "2026-11-25T21:19:05Z",
+   "views": 124,
+   "likes": 0,
+   "replies": 0,
+   "reposts": 0,
+   "text": "It's very fun to just work on my own things :D",
+   "matched": "from:levelsio",
+   "gold_ratio": null,
+   "age_h": 1.2
+  }
+ ],
+ "mentions": [],
+ "accounts": [
+  {
+   "handle": "levelsio",
+   "followers": null,
+   "bio": "💸https://t.co/sQ0aiU7v02\n📸https://t.co/lAyoqmSBRX $68K/m\n🎮https://t.co/tF49atJ396 $44K/m\n🏡https://t.co/1oqUgfD6CZ $23K/m\n👙@X $20K/m\n🌍https://t.co/UXK5AFqCaQ $7K/m\n🏩https://t.co/4p4dzTDVN6 $3K/m\n💾@pieter\n📝https://t.co/8VnHmB3uah",
+   "recent_post_url": "https://x.com/levelsio/status/2125628726067216519"
+  },
+  {
+   "handle": "ericrbuilds",
+   "followers": null,
+   "bio": "21 y/o indie hacker from Barcelona. Building LaborIA: free job courses and real salary data for Spain. Next: LaborBoost, CVs. Real numbers every day.",
+   "recent_post_url": "https://x.com/ericrbuilds/status/2125695475601068253"
+  },
+  {
+   "handle": "eddiejaoude",
+   "followers": null,
+   "bio": "🌏 Digital Nomad 🇬🇧🇵🇹🇹🇭\n⭐️ GitHub Star of the Year | 👨‍🏫 GitHub Top Teacher Award\n🤓 Developer Advocate @paypaldev \n🎙️ Views expressed are my own",
+   "recent_post_url": "https://x.com/eddiejaoude/status/2125662053717168619"
+  },
+  {
+   "handle": "rashem48",
+   "followers": null,
+   "bio": "Building Products\n https://t.co/dPU4jEOZhx $200\n🚀 https://t.co/FhCJDUo7lQ $15\n🐸 https://t.co/y6B0Aa0M8i $20\n🧾 https://t.co/75afWGJVBI $0\n🛍️ https://t.co/FvCp3hO4wu $6.5K",
+   "recent_post_url": "https://x.com/rashem48/status/2125707222357524737"
+  },
+  {
+   "handle": "metatransformr",
+   "followers": null,
+   "bio": "Building Valenfeld: an Elder Scrolls RPG with Morrowind depth, made with an AI agent swarm. Exited founder. DMs open.",
+   "recent_post_url": "https://x.com/metatransformr/status/2125632940625510661"
+  },
+  {
+   "handle": "croffasia",
+   "followers": null,
+   "bio": "Founder of It's a Plan. Open source Linear alternative with AI teammates.",
+   "recent_post_url": "https://x.com/croffasia/status/2125718220241785000"
+  },
+  {
+   "handle": "paulosteinberg",
+   "followers": null,
+   "bio": "Working on https://t.co/q5QBFstZhx and https://t.co/CJaWMTy3T3",
+   "recent_post_url": "https://x.com/paulosteinberg/status/2125716706261631046"
+  },
+  {
+   "handle": "dev_coma",
+   "followers": null,
+   "bio": "AI Engineer and full stack dev by day. Building freedom for my family by night.",
+   "recent_post_url": "https://x.com/dev_coma/status/2125716928970760379"
+  },
+  {
+   "handle": "chiefkittenme",
+   "followers": null,
+   "bio": "Co-founder & CPO at Tatako: spoken English for little ones | M. Sc Cognitive Psychology | worldschooling 2 toddlers in 37 countries",
+   "recent_post_url": "https://x.com/chiefkittenme/status/2125325831153025471"
+  },
+  {
+   "handle": "sharyph_",
+   "followers": null,
+   "bio": "Building → https://t.co/ZDwQ0T4osg the most trusted place for builders to launch. Weekly and daily best list.  guides → https://t.co/kcTK8PB1Ui",
+   "recent_post_url": "https://x.com/sharyph_/status/2125560130842562766"
+  }
+ ],
+ "trends": [
+  {
+   "topic": "Games built with Claude Code",
+   "example_urls": [
+    "https://x.com/jawadPROdctDsgn/status/2125702352237994149",
+    "https://x.com/eddiejaoude/status/2125662053717168619",
+    "https://x.com/timsekamov/status/2125566280413384707"
+   ]
+  },
+  {
+   "topic": "Indie build-in-public sales logs",
+   "example_urls": [
+    "https://x.com/ericrbuilds/status/2125695475601068253",
+    "https://x.com/rashem48/status/2125707222357524737"
+   ]
+  },
+  {
+   "topic": "Coding from a phone",
+   "example_urls": [
+    "https://x.com/chiefkittenme/status/2125325831153025471",
+    "https://x.com/Eli_Greenfeld/status/2125367677346541721",
+    "https://x.com/yasir_builds/status/2125587035302097368"
+   ]
+  },
+  {
+   "topic": "Solo open-source AI agent tools",
+   "example_urls": [
+    "https://x.com/croffasia/status/2125718220241785000",
+    "https://x.com/chinmayshah899/status/2125718219604553961",
+    "https://x.com/sharyph_/status/2125560130842562766"
+   ]
+  },
+  {
+   "topic": "Automated playtesting bottleneck in AI game dev",
+   "example_urls": [
+    "https://x.com/metatransformr/status/2125632940625510661"
+   ]
+  }
+ ]
+}
