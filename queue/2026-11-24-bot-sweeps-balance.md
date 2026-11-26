@@ -3,7 +3,7 @@ id: 2026-11-24-bot-sweeps-balance
 type: original
 pillar: design
 product: none
-scheduled_at: 2026-11-24T17:30:00Z
+scheduled_at: 2026-11-27T14:00:00Z
 why: trend "AI playtesting and balance sims"; uses the bot-playtester fact from brain/products/mobile-game.md
 brain_refs: brain/products/mobile-game.md, brain/voice.md
 split: train
