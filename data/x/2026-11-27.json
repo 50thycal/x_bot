@@ -1,0 +1,342 @@
+{
+ "date": "2026-11-27",
+ "collected_at": "2026-11-27T21:56:34Z",
+ "usage": "model grok-4.7 · tokens in/out 66466/23436 · tools x_search_calls=12, x_posts_fetched=84 · cost $0.6454",
+ "cost_usd": 0.645356,
+ "posts": [
+  {
+   "url": "https://x.com/AsanaComic/status/2126434774906716643",
+   "author": "AsanaComic",
+   "author_followers": null,
+   "posted_at": "2026-11-27T21:55:32Z",
+   "views": 2,
+   "likes": 0,
+   "replies": 0,
+   "reposts": 0,
+   "text": "Solo here: I'm building ASANA, a sci-fi comedy visual novel. The ship's cat is a live AI character, so you type anything and he answers out loud. Built with Claude Code and Codex, generative AI is used. Out Dec 9, demo: https://store.steampowered.com/app/4603740/  https://t.co/qYW9ltNX5r",
+   "matched": "\"built with Claude Code\" OR \"built with Codex\"",
+   "gold_ratio": null,
+   "age_h": 0.0
+  },
+  {
+   "url": "https://x.com/henkkafi/status/2126432979039723960",
+   "author": "henkkafi",
+   "author_followers": null,
+   "posted_at": "2026-11-27T21:48:24Z",
+   "views": 10,
+   "likes": 1,
+   "replies": 0,
+   "reposts": 0,
+   "text": "My gym bot side project keeps rolling 💪 This week I built a Telegram Mini App UI for it, showed it off to a friend, and logged a quick demo workout that accidentally ended up in my real training data and messed up my next session. This week I learned that test data and real data should never share the same database. Turns out demo reps still count when your bot takes gains way too seriously 😄 #AI ",
+   "matched": "\"indie hacker\" OR \"side project\"",
+   "gold_ratio": null,
+   "age_h": 0.1
+  },
+  {
+   "url": "https://x.com/pasha_barbashin/status/2126431420495151340",
+   "author": "pasha_barbashin",
+   "author_followers": null,
+   "posted_at": "2026-11-27T21:42:12Z",
+   "views": 16,
+   "likes": 1,
+   "replies": 1,
+   "reposts": 0,
+   "text": "I almost left this project behind. Now 150+ people use it.\n\nSōka was my first web project in 2025. I built it to learn what I could make with AI as a non-developer.\n\nIt helped organise and store health test results. Mostly for my wife, me, and our nutritionist.\n\nThen I moved on to other ideas.\n\nAround April, organic traffic started growing. New signups came every week.",
+   "matched": "\"side project\"",
+   "gold_ratio": null,
+   "age_h": 0.2
+  },
+  {
+   "url": "https://x.com/ImZaneKelly/status/2126431159110521152",
+   "author": "ImZaneKelly",
+   "author_followers": null,
+   "posted_at": "2026-11-27T21:41:10Z",
+   "views": 9,
+   "likes": 1,
+   "replies": 0,
+   "reposts": 0,
+   "text": "Saturday devlog on my island war game.\n\nBefore: every island was a grid of square tiles with rocks dropped on top.\n\nAfter: one terrain mesh per island, grown from the match seed. Rounded beaches, proper shallows, mountains that sit in the ground.\n\nSame seed on both sides gives the same island, so multiplayer stays in sync.",
+   "matched": "devlog",
+   "gold_ratio": null,
+   "age_h": 0.3
+  },
+  {
+   "url": "https://x.com/SSGDevs/status/2126430479360422035",
+   "author": "SSGDevs",
+   "author_followers": null,
+   "posted_at": "2026-11-27T21:38:28Z",
+   "views": 13,
+   "likes": 1,
+   "replies": 0,
+   "reposts": 0,
+   "text": "Devlog #7 is live!\n\n🗺️ Updated Early Access roadmap\n👽 First look at the new Alien Incursion update coming in December\n🎮 New and improved Demo with it\n🏷️ 20% off through Dec 10\n🚀 Bullet Heaven fest 4.0 starts Dec 3\n\nhttps://store.steampowered.com/news/app/3353390/view/697656603284865084",
+   "matched": "devlog",
+   "gold_ratio": null,
+   "age_h": 0.3
+  },
+  {
+   "url": "https://x.com/RandomPerson242/status/2126424887761703329",
+   "author": "RandomPerson242",
+   "author_followers": null,
+   "posted_at": "2026-11-27T21:16:14Z",
+   "views": 8,
+   "likes": 0,
+   "replies": 1,
+   "reposts": 0,
+   "text": "AI game development: \"well this is interesting.\"\n\nI've long used chatgpt as my local go-to for brainstorming and chatter. I also use it for questions about some game I'm playing. \"How do I...\" Since chatgpt has good memory across conversations, \"it knows me pretty well\".\n\nSo I used chatgpt to brainstorm my latest game idea and we got to a pretty good concept for a prototype, which I fed to Claude.",
+   "matched": "\"game development\"",
+   "gold_ratio": null,
+   "age_h": 0.7
+  },
+  {
+   "url": "https://x.com/writewarz/status/2126422978036690965",
+   "author": "writewarz",
+   "author_followers": null,
+   "posted_at": "2026-11-27T21:08:39Z",
+   "views": 8,
+   "likes": 0,
+   "replies": 0,
+   "reposts": 0,
+   "text": "Round Robin is out of the nest!\n\n3–6 friends. Three rounds. One ridiculous story. No voting.\n\nOur Thanksgiving update adds Robin, phone/browser play, and faster setup. Only the host needs to own it.\n\nDev log + 30% off through Dec 1, noon ET:\nhttps://store.steampowered.com/news/app/2477650/view/719048701512779657?utm_source=x&utm_medium=social&utm_campaign=round_robin_2026_11_27&utm_content=devlog",
+   "matched": "devlog",
+   "gold_ratio": null,
+   "age_h": 0.8
+  },
+  {
+   "url": "https://x.com/NabhaniMehdi/status/2126422222663503944",
+   "author": "NabhaniMehdi",
+   "author_followers": null,
+   "posted_at": "2026-11-27T21:05:39Z",
+   "views": 191,
+   "likes": 5,
+   "replies": 4,
+   "reposts": 0,
+   "text": "Build in public - Day 6\n\n0 users\n0 paying users\n$0 MRR\n1,151 followers on 𝕏 (+5 today)\nLaunch deadline: Dec 15, 2026\n\n418 PRs merged today across 37 repos.\n\nToday on GeeniusOS, new rule for my agents (I called it attitude.md): done means merged, no enterprise ceremony until there are users -> 544 tickets closed in one hour! sounds like a very busy weekend ahead!",
+   "matched": "\"build in public\"",
+   "gold_ratio": null,
+   "age_h": 0.8
+  },
+  {
+   "url": "https://x.com/_MattMakesMedia/status/2126420547655598377",
+   "author": "_MattMakesMedia",
+   "author_followers": null,
+   "posted_at": "2026-11-27T20:59:00Z",
+   "views": 37,
+   "likes": 1,
+   "replies": 1,
+   "reposts": 0,
+   "text": "My night routine is slowly turning from watching TV to vibe coding with Claude. \n\nI built a job board for my local newsletter. \n\nFree to browse, searchable by company, town and every listing links out to the original posting. \n\nVersion 1.0 is basic, but works and updates daily.",
+   "matched": "\"vibe coding\"",
+   "gold_ratio": null,
+   "age_h": 1.0
+  },
+  {
+   "url": "https://x.com/dhh/status/2126416347387334812",
+   "author": "dhh",
+   "author_followers": null,
+   "posted_at": "2026-11-27T20:42:18Z",
+   "views": 19555,
+   "likes": 501,
+   "replies": 61,
+   "reposts": 11,
+   "text": "Spent some time optimizing Omarchy for a 4GB RAM ceiling today. It's surprisingly doable. Bunch of apps, YouTube, etc. Of course, there's a limit, but only because the web has turned into such a memory hungry beast. It could run 100 native apps easy.",
+   "matched": "from:dhh",
+   "gold_ratio": null,
+   "age_h": 1.2
+  },
+  {
+   "url": "https://x.com/BIGBULLapp/status/2126339422031351810",
+   "author": "BIGBULLapp",
+   "author_followers": null,
+   "posted_at": "2026-11-27T15:36:38Z",
+   "views": 83,
+   "likes": 0,
+   "replies": 0,
+   "reposts": 0,
+   "text": "OpenGame turns your coding agent into a full game studio: Claude Code, Codex, DeepSeek or any local agent drives 3D gameplay, art, music and voice from one idea to a playable build. It ships 100+ viral game templates to remix and a multi-platform publishing path, all in TypeScript. Wire it up over MCP and start from a template.",
+   "matched": "semantic: Claude Code or Codex game builds",
+   "gold_ratio": null,
+   "age_h": 6.3
+  },
+  {
+   "url": "https://x.com/amir_fish/status/2126325060671877585",
+   "author": "amir_fish",
+   "author_followers": null,
+   "posted_at": "2026-11-27T14:39:34Z",
+   "views": 3,
+   "likes": 0,
+   "replies": 0,
+   "reposts": 0,
+   "text": "I run Claude Code and Codex CLI together; one session spawns helpers and sends them instructions. With CCC I hand off work and walk away: agents work the queue, and I answer their decisions from my phone by text, Telegram or email. Free, source-available. https://getccc.dev/?utm_source=x&utm_medium=reply&utm_campaign=agent-replies&utm_content=phone",
+   "matched": "semantic: Claude Code / coding from phone",
+   "gold_ratio": null,
+   "age_h": 7.3
+  },
+  {
+   "url": "https://x.com/FrextoSol/status/2125976419675107672",
+   "author": "FrextoSol",
+   "author_followers": null,
+   "posted_at": "2026-11-26T15:34:11Z",
+   "views": 66,
+   "likes": 4,
+   "replies": 1,
+   "reposts": 0,
+   "text": "I built a mobile game with AI.\n\nPut it on the store. People are paying for it.\n\nThis account is where I share how. Not naming the game, because I'm not here to advertise.",
+   "matched": "semantic: how they built a game",
+   "gold_ratio": null,
+   "age_h": 30.4
+  },
+  {
+   "url": "https://x.com/Joshua_WD/status/2125975396105540022",
+   "author": "Joshua_WD",
+   "author_followers": null,
+   "posted_at": "2026-11-26T15:30:07Z",
+   "views": 790,
+   "likes": 3,
+   "replies": 3,
+   "reposts": 1,
+   "text": "Running a tiny agent content team as a solo founder. Three loops, a few agents, one human making the calls. How I'd set it up with Claude Code and Codex without it turning into a second job. https://x.com/i/article/2125522943786545152",
+   "matched": "semantic: Claude Code and Codex",
+   "gold_ratio": null,
+   "age_h": 30.4
+  },
+  {
+   "url": "https://x.com/tuturetom/status/2125974163362029765",
+   "author": "tuturetom",
+   "author_followers": null,
+   "posted_at": "2026-11-26T15:25:13Z",
+   "views": 93,
+   "likes": 3,
+   "replies": 0,
+   "reposts": 0,
+   "text": "We just opensource claude game agent 🔥\n\nUse your claude code, codex, deepseek build full-stack game 🎮\n\nSource 👉",
+   "matched": "semantic: Claude Code / Codex game agent",
+   "gold_ratio": null,
+   "age_h": 30.5
+  },
+  {
+   "url": "https://x.com/saturadev/status/2125878859803562087",
+   "author": "saturadev",
+   "author_followers": null,
+   "posted_at": "2026-11-26T09:06:31Z",
+   "views": 294,
+   "likes": 6,
+   "replies": 4,
+   "reposts": 0,
+   "text": "Mobile studios pay thousands of dollars for a single playable ad, and this week I had an agent build one out of a Unity game I found on GitHub.\n\nA playable is the small game you can tap inside an ad before installing anything, and ad networks take it as one HTML file.",
+   "matched": "semantic: agent-built game / playable",
+   "gold_ratio": null,
+   "age_h": 36.8
+  }
+ ],
+ "mentions": [],
+ "accounts": [
+  {
+   "handle": "AsanaComic",
+   "followers": null,
+   "bio": "Asana: a captain/pilot/explorer and a god-level AI who insists on being a cat, drifting through strange worlds, bad jobs, and chaos. 🚀🐈‍⬛",
+   "recent_post_url": "https://x.com/AsanaComic/status/2126434774906716643"
+  },
+  {
+   "handle": "pasha_barbashin",
+   "followers": null,
+   "bio": "2025: moving boxes in powerpoint\n2026: building products to pay my bills\n❤️‍🩹 https://t.co/kDSythvak7 \n📸 https://t.co/FgoeYFBNyn",
+   "recent_post_url": "https://x.com/pasha_barbashin/status/2126431420495151340"
+  },
+  {
+   "handle": "ImZaneKelly",
+   "followers": null,
+   "bio": "26 years in enterprise ict. wardogs, poe 2, game dev and vibe coding jokes. building at https://t.co/2rd702sJUu",
+   "recent_post_url": "https://x.com/ImZaneKelly/status/2126431159110521152"
+  },
+  {
+   "handle": "NabhaniMehdi",
+   "followers": null,
+   "bio": "I'm building some stuff :)\n\n🧠 https://t.co/YQXADL210Y — The OS for AI agents\n📚 https://t.co/Nr8xDNgNCh — Prompts as software\n🎬 https://t.co/MiQchZzhSf — Recording app\n\n👇 everything else:",
+   "recent_post_url": "https://x.com/NabhaniMehdi/status/2126422222663503944"
+  },
+  {
+   "handle": "amir_fish",
+   "followers": null,
+   "bio": "Building CCC: one dashboard for 30+ parallel Claude/Codex/Antigravity agents. Local. open source. Ex-Meta small biz, ex-Google small biz/Ads,",
+   "recent_post_url": "https://x.com/amir_fish/status/2126325060671877585"
+  },
+  {
+   "handle": "saturadev",
+   "followers": null,
+   "bio": "Satura Space: the most powerful ONE-PERSON AI game studio on real Unity.\nFREE and Open Source.",
+   "recent_post_url": "https://x.com/saturadev/status/2125878859803562087"
+  },
+  {
+   "handle": "tuturetom",
+   "followers": null,
+   "bio": "Co-founder & CEO @OpenDesignHQ @OpenDesignDevs\nThe first collaborative design agent workspace.\n100K+ GitHub ⭐→ https://t.co/J2erf2l0vF",
+   "recent_post_url": "https://x.com/tuturetom/status/2125974163362029765"
+  },
+  {
+   "handle": "dhh",
+   "followers": null,
+   "bio": "Father of three, Creator of Ruby on Rails + Omarchy, Co-owner & CTO of 37signals, Shopify director, NYT best-selling author, and Le Mans 24h class-winner.",
+   "recent_post_url": "https://x.com/dhh/status/2126416347387334812"
+  },
+  {
+   "handle": "_MattMakesMedia",
+   "followers": null,
+   "bio": "Running a local newsletter and a residential cleaning biz. Long runs, short attention span.",
+   "recent_post_url": "https://x.com/_MattMakesMedia/status/2126420547655598377"
+  },
+  {
+   "handle": "SSGDevs",
+   "followers": null,
+   "bio": "Indie studio making Starforged Legacy. Combine weapons and augments to turn your starship into a fleet-destroying war machine. Discord: https://t.co/tMaOn8htJa",
+   "recent_post_url": "https://x.com/SSGDevs/status/2126430479360422035"
+  }
+ ],
+ "trends": [
+  {
+   "topic": "Games built with Claude Code or Codex",
+   "example_urls": [
+    "https://x.com/AsanaComic/status/2126434774906716643",
+    "https://x.com/tuturetom/status/2125974163362029765",
+    "https://x.com/BIGBULLapp/status/2126339422031351810",
+    "https://x.com/RandomPerson242/status/2126424887761703329"
+   ]
+  },
+  {
+   "topic": "Indie game devlogs",
+   "example_urls": [
+    "https://x.com/ImZaneKelly/status/2126431159110521152",
+    "https://x.com/SSGDevs/status/2126430479360422035",
+    "https://x.com/writewarz/status/2126422978036690965",
+    "https://x.com/NabhaniMehdi/status/2126422222663503944"
+   ]
+  },
+  {
+   "topic": "Solo side projects and build in public",
+   "example_urls": [
+    "https://x.com/henkkafi/status/2126432979039723960",
+    "https://x.com/pasha_barbashin/status/2126431420495151340",
+    "https://x.com/_MattMakesMedia/status/2126420547655598377",
+    "https://x.com/NabhaniMehdi/status/2126422222663503944"
+   ]
+  },
+  {
+   "topic": "Agents running builds while the human steps away",
+   "example_urls": [
+    "https://x.com/amir_fish/status/2126325060671877585",
+    "https://x.com/Joshua_WD/status/2125975396105540022",
+    "https://x.com/saturadev/status/2125878859803562087",
+    "https://x.com/NabhaniMehdi/status/2126422222663503944"
+   ]
+  },
+  {
+   "topic": "AI-assisted game prototypes and playables",
+   "example_urls": [
+    "https://x.com/saturadev/status/2125878859803562087",
+    "https://x.com/FrextoSol/status/2125976419675107672",
+    "https://x.com/RandomPerson242/status/2126424887761703329",
+    "https://x.com/BIGBULLapp/status/2126339422031351810"
+   ]
+  }
+ ]
+}
